@@ -16,7 +16,7 @@ const handleChange = (event) => {
     console.log(event.target.name)
     console.log(event.target.value)
     // so we can display the change in the form
-    setTransactionData({...transactionData , [even.target.name]: event.target.value})
+    setTransactionData({...transactionData , [event.target.name]: event.target.value})
 }
 
 const [transactionData , setTransactionData] = useState(initialState)

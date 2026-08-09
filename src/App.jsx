@@ -7,6 +7,7 @@ import SignInForm from "./pages/SignInForm"
 import Landing from "./pages/Landing"
 import Dashboard from "./pages/Dashboard"
 import TransactionForm from "./pages/TransactionForm"
+import CategoryForm from "./pages/CategoryForm"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -29,6 +30,7 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
         <Route path="/transaction/new" element={<TransactionForm />} />
+        <Route path="/categories/new" element={<CategoryForm />} />
       </Routes>
       </main>
     </div>
