@@ -45,7 +45,7 @@ nav a:hover {
 
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 8px;
   font-weight: 600;
 }
@@ -133,4 +133,27 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 28px;
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  width: 200px;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-surface);
+  padding: 20px;
+}
+
+.app-main {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  padding: 48px 24px;
 }

@@ -21,7 +21,7 @@ const App = () => {
   const [user, setUser] = useState(getUserFromToken())
   
   return (
-    <div>
+    <div className="app-layout">
       <Nav user={user} setUser={setUser} />
       <main className="app-main">
       <Routes>

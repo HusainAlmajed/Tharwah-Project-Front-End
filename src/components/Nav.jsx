@@ -9,7 +9,7 @@ const Nav = (props) => {
     }
 
     return (
-        <nav>
+        <nav className="app-layout">
             <Link className="nav-brand" to="/">Tharwah</Link>
             { props.user ? (
                 <ul>

@@ -31,8 +31,8 @@ const [transactionData , setTransactionData] = useState(initialState)
                 <button type="button">Income</button>
                 <button type="button">Expense</button>
             </div>
-
-            Description
+        <div>
+  Description
             <input type="String" name="description" onChange={handleChange}/>
 
             Amount
@@ -44,6 +44,8 @@ const [transactionData , setTransactionData] = useState(initialState)
             category
             <input onChange={handleChange}/>
             <button type="submit">Add Transaction</button>
+        </div>
+        
         </form>
         </div>
     )
