@@ -16,6 +16,7 @@ const Dashboard = (props) => {
 
     return (
         <div className="dashboard">
+            <button>+ Add Transaction</button>
         <section className="cardSec">
             Income
                 <div className="card">
