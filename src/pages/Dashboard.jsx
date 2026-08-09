@@ -15,21 +15,30 @@ const Dashboard = (props) => {
     }, [])
 
     return (
-        <section>
-            <header>
-                <h1>Welcome {props.user.username}!</h1>
-                <h2>View All the Users</h2>
-            </header>
-            {allUsers.map((user) => (
+        <div className="dashboard">
+        <section className="cardSec">
+            Income
                 <div className="card">
-                    <header>
-                        <h1>
-                        {user.username}
-                        </h1>
-                    </header>
+                        <p>500$</p>
                 </div>
-            ))}
+            Expenses
+                <div className="card">
+                        <p>300$</p>
+                </div>
+            Balance
+                <div className="card">
+                        <p>200$</p>
+                </div>
         </section>
+
+        <section>
+            Monthly Cash Flow
+            <div className="monthlyCard">
+
+            </div>
+        </section>
+        </div>
+        
     )
 }
 
