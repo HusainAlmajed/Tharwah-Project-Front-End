@@ -4,7 +4,19 @@ const TransactionForm = () => {
 
 const initialState = {
     name: '',
-    trnasactionType: ''
+    trnasactionType: '',
+    amount: '',
+    date: '',
+    description: '',
+    category: '',
+    owner: '',
+}
+
+const handleChange = (event) => {
+    console.log(event.target.name)
+    console.log(event.target.value)
+    // so we can display the change in the form
+    setTransactionData({...transactionData , [even.target.name]: event.target.value})
 }
 
 const [transactionData , setTransactionData] = useState(initialState)
@@ -21,17 +33,17 @@ const [transactionData , setTransactionData] = useState(initialState)
             </div>
 
             Description
-            <input type="String" name="description" />
+            <input type="String" name="description" onChange={handleChange}/>
 
             Amount
-            <input type="Number" name="amount" required />
+            <input type="Number" name="amount" required onChange={handleChange}/>
 
             Date
-            <input type="Date" name="date" required />
+            <input type="Date" name="date" required onChange={handleChange}/>
 
             category
-            <input />
-
+            <input onChange={handleChange}/>
+            <button type="submit">Add Transaction</button>
         </form>
         </div>
     )
