@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { useNavigate } from "react-router"
+const TransactionForm = (props) => {
 
-const TransactionForm = () => {
+const navigate = useNavigate()
 
 const initialState = {
     name: '',
-    trnasactionType: '',
+    transactionType: '',
     amount: '',
     date: '',
     description: '',
@@ -19,8 +21,15 @@ const handleChange = (event) => {
     setTransactionData({...transactionData , [event.target.name]: event.target.value})
 }
 
-const handleSubmit = () => {
+const handleAddTransaction = async (transactionData) => {
+    const newTransaction = await props.transactionServices.create(transactionData)
+    setTransactionData([newTransaction , ...setTransactionData])
+    // navigate('/transactions')
+}
 
+const handleSubmit = (event) => {
+    event.preventDefault()
+    handleAddTransaction(transactionData)
 }
 
 const [transactionData , setTransactionData] = useState(initialState)
@@ -31,13 +40,13 @@ const [transactionData , setTransactionData] = useState(initialState)
 
         <form onSubmit={handleSubmit}>
             <label>Transaction type</label>
-            <div className="typeButton">
-                <button type="button">Income</button>
-                <button type="button">Expense</button>
-            </div>
+            {/* <div className="typeButton"> */}
+                <button type="button" value={'Income'} name="transactionType" onClick={handleChange}>Income</button>
+                <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>
+            {/* </div> */}
         <div>
   Description
-            <input type="String" name="description" onChange={handleChange}/>
+            <input type="String" name="description" onChange={handleChange} value={transactionData.description}/>
 
             Amount
             <input type="Number" name="amount" required onChange={handleChange}/>
@@ -46,7 +55,7 @@ const [transactionData , setTransactionData] = useState(initialState)
             <input type="Date" name="date" required onChange={handleChange}/>
 
             category
-            <input onChange={handleChange}/>
+            <input name="category" onChange={handleChange}/>
             <button type="submit">Add Transaction</button>
         </div>
         

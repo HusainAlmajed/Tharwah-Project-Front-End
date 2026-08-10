@@ -18,7 +18,7 @@ const navigate = useNavigate()
 
     return (
         <div className="dashboard">
-            <button onClick={() => navigate('transaction/new')}>+ Add Transaction</button>
+            <button onClick={() => navigate('transactions/new')}>+ Add Transaction</button>
         <section className="cardSec">
             Income
                 <div className="card">
