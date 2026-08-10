@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react"
 import { index } from '../services/user'
+import { useNavigate } from "react-router"
 
 const Dashboard = (props) => {
+
+const navigate = useNavigate()
 
     const [allUsers, setAllUsers] = useState([])
 
@@ -11,12 +14,11 @@ const Dashboard = (props) => {
             setAllUsers(usersData)
         }
         fetchUsers()
-        
     }, [])
 
     return (
         <div className="dashboard">
-            <button>+ Add Transaction</button>
+            <button onClick={() => navigate('transaction/new')}>+ Add Transaction</button>
         <section className="cardSec">
             Income
                 <div className="card">
