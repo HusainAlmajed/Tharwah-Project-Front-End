@@ -19,13 +19,17 @@ const handleChange = (event) => {
     setTransactionData({...transactionData , [event.target.name]: event.target.value})
 }
 
+const handleSubmit = () => {
+
+}
+
 const [transactionData , setTransactionData] = useState(initialState)
 
     return (
         <div className="transactionForm">
         <h1>Add transaction</h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>Transaction type</label>
             <div className="typeButton">
                 <button type="button">Income</button>

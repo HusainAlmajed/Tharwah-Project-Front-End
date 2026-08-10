@@ -25,13 +25,17 @@ const handleType = (event) => {
 
 }
 
+const handleSubmit = (event) => {
+    event.preventDefault()
+}
+
 const [categoryData , setCategoryData] = useState(initialState)
 
     return (
         <div className="categoryForm">
         <h1>Add a Category</h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
             <label>Category Name</label>
             <input type="String" name="name" required maxLength={35} onChange={handleChange} value={categoryData.name} />
 
