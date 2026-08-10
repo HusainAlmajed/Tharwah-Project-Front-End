@@ -10,7 +10,8 @@ const create = async (transactionData) => {
             },
             body: JSON.stringify(transactionData),
         })
-        return res.json()
+        const data = await res.json()
+        return data
     } catch (err) {
         console.log(err)
     }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { useNavigate } from "react-router"
 const TransactionForm = (props) => {
 
@@ -14,6 +14,19 @@ const initialState = {
     owner: '',
 }
 
+const [transactionData , setTransactionData] = useState(initialState)
+const [categories , setCategories] = useState([])
+
+// To get all the categories 
+useEffect(() => {
+    const fetchCategories = async () => {
+        const categoriesData = await props.categoryServices.index()
+        setCategories(categoriesData)
+        console.log(categoriesData)
+    }
+    fetchCategories()
+}, [])
+
 const handleChange = (event) => {
     console.log(event.target.name)
     console.log(event.target.value)
@@ -23,16 +36,16 @@ const handleChange = (event) => {
 
 const handleAddTransaction = async (transactionData) => {
     const newTransaction = await props.transactionServices.create(transactionData)
-    setTransactionData([newTransaction , ...setTransactionData])
+    console.log(newTransaction)
+    // setTransactionData([newTransaction , ...setTransactionData])
     // navigate('/transactions')
+    setTransactionData(initialState)
 }
 
 const handleSubmit = (event) => {
     event.preventDefault()
     handleAddTransaction(transactionData)
 }
-
-const [transactionData , setTransactionData] = useState(initialState)
 
     return (
         <div className="transactionForm">
@@ -45,17 +58,26 @@ const [transactionData , setTransactionData] = useState(initialState)
                 <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>
             {/* </div> */}
         <div>
-  Description
+            Name
+            <input type="String" name="name" onChange={handleChange} value={transactionData.name} />
+
+            Description
             <input type="String" name="description" onChange={handleChange} value={transactionData.description}/>
 
             Amount
-            <input type="Number" name="amount" required onChange={handleChange}/>
+            <input type="Number" name="amount" required onChange={handleChange} value={transactionData.amount}/>
 
             Date
-            <input type="Date" name="date" required onChange={handleChange}/>
+            <input type="Date" name="date" required onChange={handleChange} value={transactionData.date}/>
 
-            category
-            <input name="category" onChange={handleChange}/>
+            {/* <input name="category" onChange={handleChange}/> */}
+            {/* FOR LATER: I want to display the categories related to the choosen transaction type */}
+            <select name="category" onChange={handleChange} value={transactionData.category}>
+                <option value="">Select Category</option>
+                {categories.map((category) => (
+                    <option key={category._id} value={category._id}>{category.name}</option>
+                ))}
+            </select>
             <button type="submit">Add Transaction</button>
         </div>
         
