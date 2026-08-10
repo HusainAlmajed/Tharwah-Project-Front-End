@@ -13,16 +13,14 @@ useEffect(() => {
 }, [])
 
     return (
-    <>
+    <div className="transaction-list">
     <h1>Transactions</h1>
     {transactions.map((transaction) => (
-        <div>
-        <li>
+        <div className="transaction" key={transaction._id}>
             <h2>{transaction.name}</h2>
-        </li>
         </div>
     ))}
-    </>
+    </div>
     )
 }
 

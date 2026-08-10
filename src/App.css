@@ -157,3 +157,12 @@ nav {
   flex: 1;
   padding: 48px 24px;
 }
+
+.transaction-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction {
+    display: block;
+}
