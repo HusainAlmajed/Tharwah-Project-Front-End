@@ -32,7 +32,7 @@ const App = () => {
         <Route path='/sign-up' element={<SignUpForm setUser={setUser} />} />
         <Route path='/sign-in' element={<SignInForm setUser={setUser} />} />
         <Route path="/transactions/new" element={<TransactionForm transactionServices={transactionServices} categoryServices={categoryServices} />} />
-        <Route path="/categories/new" element={<CategoryForm />} />
+        <Route path="/categories/new" element={<CategoryForm categoryServices={categoryServices} />} />
       </Routes>
       </main>
     </div>
