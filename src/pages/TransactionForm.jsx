@@ -33,7 +33,7 @@ const handleChange = (event) => {
     // so we can display the change in the form
     setTransactionData({...transactionData , [event.target.name]: event.target.value})
 }
-
+// we are calling the create function from transaction services and passing it thr form data
 const handleAddTransaction = async (transactionData) => {
     const newTransaction = await props.transactionServices.create(transactionData)
     console.log(newTransaction)
@@ -54,6 +54,7 @@ const handleSubmit = (event) => {
         <form onSubmit={handleSubmit}>
             <label>Transaction type</label>
             {/* <div className="typeButton"> */}
+            {/* we're giving the button a value, since the use is not inputing anything */}
                 <button type="button" value={'Income'} name="transactionType" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>
             {/* </div> */}

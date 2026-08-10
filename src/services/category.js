@@ -8,7 +8,7 @@ const create = async (categoryData) => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(transactionData),
+            body: JSON.stringify(categoryData),
         })
         const data = await res.json()
         return data    
