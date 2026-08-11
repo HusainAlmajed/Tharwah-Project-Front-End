@@ -7,7 +7,8 @@ const SignInForm = (props) => {
     const navigate = useNavigate()
 
     const initialState = {
-        username: '',
+        loginType: 'username',
+        login: '',
         password: '',
     }
     const [formData, setFormData] = useState(initialState)
@@ -21,13 +22,34 @@ const SignInForm = (props) => {
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            const signedInUser = await signIn(formData)
+            let loginData
+            if (formData.loginType === 'email') {
+                loginData = {
+                    email: formData.login,
+                    password: formData.password
+                }
+            } else {
+                loginData = {
+                    username: formData.login,
+                    password: formData.password
+                }
+            }
+
+            const signedInUser = await signIn(loginData)
             props.setUser(signedInUser)
             setFormData(initialState)
             navigate('/')
         } catch(err) {
             setMessage(err.message)
         }
+    }
+
+    let loginLabel = 'Username:'
+    let loginInputType = 'text'
+
+    if (formData.loginType === 'email') {
+        loginLabel = 'Email:'
+        loginInputType = 'email'
     }
 
     return(
@@ -38,8 +60,15 @@ const SignInForm = (props) => {
             </header>
 
             <form onSubmit={handleSubmit}>
-                Username:
-                <input type="text" name="username" value={formData.username} required onChange={handleChange} />
+                Sign in with:
+                <select name="loginType" value={formData.loginType} onChange={handleChange}>
+                    <option value="username">Username</option>
+                    <option value="email">Email</option>
+                </select>
+
+                {loginLabel}
+                <input type={loginInputType} name="login" value={formData.login} required onChange={handleChange} />
+
                 Password:
                 <input type="password" name="password" value={formData.password} required onChange={handleChange} />
                 <div className="actions">
