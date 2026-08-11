@@ -3,14 +3,17 @@ import * as transactionService from "../services/transaction"
 const TransactionList = () => {
 
 const [transactions , setTransaction] = useState([])
-
+const [loading , setLoading] = useState(true)
 useEffect(() => {
     const fetchdData = async () => {
         const data = await transactionService.index()
         setTransaction(data)
+        setLoading(false) // so whenever we have the data, loading animation will stop
     }
     fetchdData()
 }, [])
+
+if (loading) return <main><div className="loader"></div></main>
 
     return (
     <div className="transaction-list">
