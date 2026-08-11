@@ -41,25 +41,32 @@ const [balance , setBalance] = useState(0)
 
     return (
         <div className="dashboard">
-            <button onClick={() => navigate('transactions/new')}>+ Add Transaction</button>
+            <div className="dashboard-header">
+                <h1>Dashbaord</h1>
+
+                <button onClick={() => navigate('transactions/new')}>+ Add Transaction</button>
+            </div>
+
         <section className="cardSec">
-            Income
                 <div className="card">
-                        <p>${totalIncome}</p>
+                    <p className="card-title">Income</p>
+                    <h2>BHD {totalIncome}</h2>
                 </div>
-            Expenses
+            
                 <div className="card">
-                        <p>${totalExpenses}</p>
+                    <p className="card-title">Expenses</p>
+                    <h2>BHD {totalExpenses}</h2>
                 </div>
-            Balance
+            
                 <div className="card">
-                        <p>${balance}</p>
+                    <p className="card-title">Balance</p>
+                    <h2>BHD {balance}</h2>
                 </div>
         </section>
 
-        <section>
-            Monthly Cash Flow
+        <section className="monthly-section">
             <div className="monthlyCard">
+                <h3>Monthly Cash Flow</h3>
             </div>
         </section>
         </div>
