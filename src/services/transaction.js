@@ -32,7 +32,19 @@ const index = async () => {
     
 }
 
+const show = async (transactionId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${transactionId}` , {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+        })
+        return res.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 export {
     create,
     index,
+    show,
 }
