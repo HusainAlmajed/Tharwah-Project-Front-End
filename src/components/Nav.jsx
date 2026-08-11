@@ -23,7 +23,7 @@ const Nav = (props) => {
                     <li>
                         <Link to="categories/new">Add a Category</Link>
                     </li>
-                    <li>
+                    <li className="sign-out">
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
                     </li>
                 </ul>
