@@ -20,24 +20,40 @@ useEffect(() => {
 }, [transactionId])
 
     return (
-        <div className="transaction-list">
-        <h1>Details</h1>
+        <div className="transaction-details-card">
+        {/* <h1>Details</h1> */}
         <div>
-            <div>
+            <div className="transaction-summary-card">
+                <div className="transaction-summary-info">
                 <h2>{transaction.name}</h2>
                 <h3>{transaction.transactionType}</h3>
                 <h3>{new Date(transaction.date).toLocaleDateString()}</h3>
-                <h3>BHD{transaction.amount}</h3>
+                </div>
+                    <h3 className="amount">BHD {transaction.amount}</h3>
             </div>
 
-            <div>
-                <h3>{transaction.transactionType}</h3>
-                <h3>{transaction.category?.name}</h3>
-                <h3>{new Date(transaction.date).toLocaleDateString()}</h3>
-                <h3>{transaction.description}</h3>
-            </div>
-      
+            <div className="transaction-info-card">
+                <div className="transaction-detail">
+                    <h3>Type</h3>
+                    <p>{transaction.transactionType}</p>
+                </div>
 
+                <div className="transaction-detail">
+                    <h3>Name</h3>
+                    <p>{transaction.category?.name}</p>
+                </div>
+
+                <div className="transaction-detail">
+                    <h3>Date</h3>
+                    <p>{new Date(transaction.date).toLocaleDateString()}</p>
+                </div>
+
+                <div className="transaction-detail">
+                    <h3>Description</h3>
+                    <p>{transaction.description}</p>
+                </div>
+
+            </div>
         </div>
         </div>
     )

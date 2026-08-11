@@ -105,7 +105,6 @@ const handleSubmit = (event) => {
                 {transactionId ? 'Update Transaction' : 'Add Transaction'}
     </button>
         </div>
-    
         </form>
         </div>
     )
