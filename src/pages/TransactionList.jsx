@@ -14,6 +14,16 @@ useEffect(() => {
     fetchdData()
 }, [])
 
+const handleDeleteTransaction = async (transactionId) => {
+    await transactionService.deleteTransaction(transactionId)
+
+    const filteredTransactions = transactions.filter((transaction) => {
+        return transaction._id !== transactionId
+    })
+
+    setTransaction(filteredTransactions)
+}
+
 if (loading) return <main><div className="loader"></div></main>
 
     return (
@@ -22,6 +32,8 @@ if (loading) return <main><div className="loader"></div></main>
     {transactions.map((transaction) => (
         <div className="transaction" key={transaction._id}>
             <Link to={`/transactions/${transaction._id}`}><h3>{transaction.name}</h3></Link>
+            <Link to={`/transactions/${transaction._id}/edit`}>Edit</Link>
+            <button onClick={() => handleDeleteTransaction(transaction._id)}>Delete</button>
         </div>
     ))}
     </div>
