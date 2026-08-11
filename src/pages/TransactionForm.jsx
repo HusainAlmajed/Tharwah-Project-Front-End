@@ -1,8 +1,9 @@
 import { useState , useEffect } from "react"
-import { useNavigate } from "react-router"
+import { useNavigate, useParams } from "react-router"
 const TransactionForm = (props) => {
 
 const navigate = useNavigate()
+const { transactionId } = useParams()
 
 const initialState = {
     name: '',
@@ -27,6 +28,17 @@ useEffect(() => {
     fetchCategories()
 }, [])
 
+useEffect(() => {
+    const fetchTransaction = async () => {
+        if (transactionId) {
+            const transaction = await props.transactionServices.show(transactionId)
+            setTransactionData(transaction)
+        }
+    }
+
+    fetchTransaction()
+}, [transactionId])
+
 const handleChange = (event) => {
     console.log(event.target.name)
     console.log(event.target.value)
@@ -42,14 +54,24 @@ const handleAddTransaction = async (transactionData) => {
     setTransactionData(initialState)
 }
 
+const handleUpdateTransaction = async (transactionData) => {
+    const updatedTransaction = await props.transactionServices.update(transactionId, transactionData)
+    console.log(updatedTransaction)
+    navigate('/transactions')
+}
+
 const handleSubmit = (event) => {
     event.preventDefault()
-    handleAddTransaction(transactionData)
+    if (transactionId) {
+        handleUpdateTransaction(transactionData)
+    } else {
+        handleAddTransaction(transactionData)
+    }
 }
 
     return (
         <div className="transactionForm">
-        <h1>Add transaction</h1>
+        <h1>{transactionId ? 'Edit transaction' : 'Add transaction'}</h1>
 
         <form onSubmit={handleSubmit}>
             <label>Transaction type</label>
@@ -79,9 +101,11 @@ const handleSubmit = (event) => {
                     <option key={category._id} value={category._id}>{category.name}</option>
                 ))}
             </select>
-            <button type="submit">Add Transaction</button>
+            <button type="submit">
+                {transactionId ? 'Update Transaction' : 'Add Transaction'}
+    </button>
         </div>
-        
+    
         </form>
         </div>
     )
