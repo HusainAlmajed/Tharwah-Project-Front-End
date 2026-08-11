@@ -13,15 +13,15 @@ const Nav = (props) => {
             <Link className="nav-brand" to="/">Tharwah</Link>
             { props.user ? (
                 <ul>
-                    <li>Welcome, {props.user.username}!</li>
+                    {/* <li>Welcome, {props.user.username}!</li> */}
                     <li>
                         <Link to="/">Dashboard</Link>
                     </li>
-                    <li>
-                        <Link to="categories/new">Add a Category</Link>
+                     <li>
+                        <Link to="transactions">Transactions</Link>
                     </li>
                     <li>
-                        <Link to="transactions">Transaction List</Link>
+                        <Link to="categories/new">Add a Category</Link>
                     </li>
                     <li>
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>
