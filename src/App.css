@@ -320,3 +320,98 @@ nav li a:hover {
 .sign-out {
   margin-top: auto;
 }
+
+.transaction-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.type-button {
+  display: flex;
+  gap: 16px;
+}
+
+.type-button button {
+  width: 200px;
+}
+
+.transaction-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 28px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+
+  background-color: var(--color-surface);
+}
+
+.form-field select {
+  height: 42px;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary-soft);
+}
+
+.description {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.form-actions button {
+  min-width: 150px;
+}
+
+@media (max-width: 700px) {
+  .transaction-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .description {
+    grid-column: auto;
+  }
+
+  .type-button {
+    flex-direction: column;
+  }
+
+  .type-button button {
+    width: 100%;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .form-actions button {
+    flex: 1;
+  }
+}

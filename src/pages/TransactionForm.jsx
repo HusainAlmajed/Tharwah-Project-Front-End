@@ -80,37 +80,53 @@ const handleSubmit = (event) => {
         <div className="transactionForm">
         <h1>{transactionId ? 'Edit transaction' : 'Add transaction'}</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="transaction-form">
             <label>Transaction type</label>
             {/* <div className="typeButton"> */}
             {/* we're giving the button a value, since the use is not inputing anything */}
+            <div className="type-button">
                 <button type="button" value={'Income'} name="transactionType" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>
+            </div>
+                
             {/* </div> */}
-        <div>
+        <div className="transaction-form-grid">
+            <div className="form-field">
             Name
             <input type="String" name="name" onChange={handleChange} value={transactionData.name} />
+            </div>
 
-            Description
-            <input type="String" name="description" onChange={handleChange} value={transactionData.description}/>
-
+            <div className="form-field">
             Amount
             <input type="Number" name="amount" required onChange={handleChange} value={transactionData.amount}/>
+            </div>
 
+            <div className="form-field">
             Date
             <input type="Date" name="date" required onChange={handleChange} value={transactionData.date}/>
+            </div>
 
             {/* <input name="category" onChange={handleChange}/> */}
             {/* FOR LATER: I want to display the categories related to the choosen transaction type */}
+            <div className="form-field">
             <select name="category" onChange={handleChange} value={transactionData.category}>
                 <option value="">Select Category</option>
                 {categories.map((category) => (
                     <option key={category._id} value={category._id}>{category.name}</option>
                 ))}
             </select>
+            </div>
+
+            <div className="form-field description">
+            Description
+            <input type="String" name="description" onChange={handleChange} value={transactionData.description}/>
+            </div>
+            
+            <div className="form-actions">
             <button type="submit">
                 {transactionId ? 'Update Transaction' : 'Add Transaction'}
-    </button>
+            </button>
+            </div>
         </div>
         </form>
         </div>
