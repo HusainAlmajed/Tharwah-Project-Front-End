@@ -16,12 +16,11 @@ const create = async (categoryData) => {
         console.log(err)
     }
 }
-
 const index = async () => {
     try {
-    const res = await fetch(BASE_URL, {
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const res = await fetch(BASE_URL, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
     })
     return res.json()
@@ -32,7 +31,22 @@ const index = async () => {
     
 }
 
+const show = async (categoryId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${categoryId}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        return res.json()
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+
 export {
     create,
     index,
+    show,
 }
