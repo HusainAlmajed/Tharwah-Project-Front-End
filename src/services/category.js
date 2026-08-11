@@ -44,9 +44,27 @@ const show = async (categoryId) => {
     }
 }
 
+const update = async (categoryId, categoryData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${categoryId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(categoryData),
+        })
+        const data = await res.json()
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 export {
     create,
     index,
     show,
+    update,
 }
