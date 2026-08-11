@@ -1,5 +1,6 @@
 import { useState , useEffect } from "react"
 import * as transactionService from "../services/transaction"
+import { Link } from "react-router"
 const TransactionList = () => {
 
 const [transactions , setTransaction] = useState([])
@@ -20,7 +21,7 @@ if (loading) return <main><div className="loader"></div></main>
     <h1>Transactions</h1>
     {transactions.map((transaction) => (
         <div className="transaction" key={transaction._id}>
-            <h2>{transaction.name}</h2>
+            <Link to={`/transactions/${transaction._id}`}><h3>{transaction.name}</h3></Link>
         </div>
     ))}
     </div>
