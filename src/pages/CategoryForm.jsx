@@ -1,7 +1,10 @@
 import { useState , useEffect} from "react"
-import { useNavigate } from "react-router"
+import { useNavigate, useParams } from "react-router"
 
 const CategoryForm = (props) => {
+
+const navigate = useNavigate()
+const { categoryId } = useParams()
 
 const initialState = {
     name: '',
@@ -11,6 +14,17 @@ const initialState = {
 
 const [type , setType] = useState('')
 const [categoryData , setCategoryData] = useState(initialState)
+
+useEffect(() => {
+    const fetchCategory = async () => {
+        if (categoryId) {
+            const category = await props.categoryServices.show(categoryId)
+            setCategoryData(category)
+        }
+    }
+
+    fetchCategory()
+}, [categoryId])
 
 const handleChange = (event) => {
     console.log(event.target.name)
@@ -33,14 +47,25 @@ const handleAddCategory = async (categoryData) => {
     console.log(newCategory)
 }
 
+const handleUpdateCategory = async (categoryData) => {
+    const updatedCategory = await props.categoryServices.update(categoryId, categoryData)
+    console.log(updatedCategory)
+    navigate('/')
+}
+
 const handleSubmit = (event) => {
     event.preventDefault()
-    handleAddCategory(categoryData)
+
+    if (categoryId) {
+        handleUpdateCategory(categoryData)
+    } else {
+        handleAddCategory(categoryData)
+    }
 }
 
     return (
         <div className="categoryForm">
-        <h1>Add a Category</h1>
+        <h1>{categoryId ? 'Edit Category' : 'Add a Category'}</h1>
 
         <form onSubmit={handleSubmit}>
             <label>Category Name</label>
@@ -56,7 +81,9 @@ const handleSubmit = (event) => {
             <label>Description</label>
             <input type="String" name="description" maxLength={350} onChange={handleChange} value={categoryData.description} />
         </div>
-            <button>Add Category</button>
+            <button>
+                {categoryId ? 'Update Category' : 'Add Category'}
+            </button>
         </form>
 
         </div>
