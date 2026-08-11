@@ -61,10 +61,26 @@ const update = async (categoryId, categoryData) => {
     }
 }
 
+const deleteCategory = async (categoryId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${categoryId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        const data = await res.json()
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 export {
     create,
     index,
     show,
     update,
+    deleteCategory
 }
