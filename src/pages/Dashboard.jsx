@@ -22,14 +22,23 @@ const [balance , setBalance] = useState(0)
 
             let income = 0
             let expense = 0
-
+            
+            const currentDate = new Date()
+            const currentMonth = currentDate.getMonth()
+            const currentYear = currentDate.getFullYear()
+            
             data.map((transaction) => {
-                if (transaction.transactionType === 'Income') {
-                    income = income + transaction.amount
-                }else if (transaction.transactionType === 'Expense') {
-                    expense = expense + transaction.amount
-                }
-            })
+                const transactionDate = new Date(transaction.date)
+                
+                if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
+                    if (transaction.transactionType === 'Income') {
+            income = income + transaction.amount
+        } else if (transaction.transactionType === 'Expense') {
+            expense = expense + transaction.amount
+        }
+
+    }
+})
         setTotalIncome(income)
         setTotalExpenses(expense)
         setBalance(income - expense)
