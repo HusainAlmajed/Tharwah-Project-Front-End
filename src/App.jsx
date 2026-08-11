@@ -35,6 +35,7 @@ const App = () => {
         <Route path="/transactions/new" element={<TransactionForm transactionServices={transactionServices} categoryServices={categoryServices} />} />
         <Route path="/transactions" element={<TransactionList />} />
         <Route path="/categories/new" element={<CategoryForm categoryServices={categoryServices} />} />
+        <Route path="/transactions/:transactionId/edit" element={<TransactionForm transactionServices={transactionServices} categoryServices={categoryServices} />} />
       </Routes>
       </main>
     </div>
