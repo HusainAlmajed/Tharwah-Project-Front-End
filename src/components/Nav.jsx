@@ -21,7 +21,7 @@ const Nav = (props) => {
                         <Link to="transactions">Transactions</Link>
                     </li>
                     <li>
-                        <Link to="categories/new">Add a Category</Link>
+                        <Link to="categories/new">Categories</Link>
                     </li>
                     <li className="sign-out">
                         <Link to="/" onClick={handleSignOut}>Sign Out</Link>

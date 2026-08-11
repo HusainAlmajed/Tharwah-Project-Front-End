@@ -14,6 +14,7 @@ const initialState = {
 
 const [type , setType] = useState('')
 const [categoryData , setCategoryData] = useState(initialState)
+const [categories , setCategories] = useState([])
 
 useEffect(() => {
     const fetchCategory = async () => {
@@ -25,6 +26,14 @@ useEffect(() => {
 
     fetchCategory()
 }, [categoryId])
+
+useEffect(() => {
+    const fetchCategories = async () => {
+        const categoriesData = await props.categoryServices.index()
+        setCategories(categoriesData)
+    }
+    fetchCategories()
+}, [])
 
 const handleChange = (event) => {
     console.log(event.target.name)
@@ -45,6 +54,9 @@ const handleAddCategory = async (categoryData) => {
     const newCategory = await props.categoryServices.create(categoryData)
     setCategoryData(initialState)
     console.log(newCategory)
+
+    // so the list will be update without the need of refreshing the page everytime
+    setCategories([newCategory , ...categories])
 }
 
 const handleUpdateCategory = async (categoryData) => {
@@ -62,6 +74,15 @@ const handleSubmit = (event) => {
         handleAddCategory(categoryData)
     }
 }
+
+// for us to retunr the categories reltaed to specific type
+const incomeCate = categories.filter((category) => {
+    return category.type === 'Income'
+})
+
+const expenseCate = categories.filter((category) => {
+    return category.type === 'Expense'
+})
 
     return (
         <div className="categoryForm">
@@ -86,6 +107,28 @@ const handleSubmit = (event) => {
             </button>
         </form>
 
+<div className="category-lists">
+
+    <div className="income-categories">
+        <h2>Income</h2>
+
+        {incomeCate.map((category) => (
+            <div key={category._id}>
+                <h3>{category.name}</h3>
+            </div>
+        ))}
+    </div>
+
+    <div className="expense-categories">
+        <h2>Expenses</h2>
+
+        {expenseCate.map((category) => (
+            <div key={category._id}>
+                <h3>{category.name}</h3>
+            </div>
+        ))}
+    </div>
+</div>
         </div>
     )
 }
