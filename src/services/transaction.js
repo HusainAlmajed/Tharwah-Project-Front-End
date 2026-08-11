@@ -45,8 +45,26 @@ const show = async (transactionId) => {
     }
 }
 
+const update = async (transactionId, transactionData) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${transactionId}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(transactionData),
+        })
+        const data = await res.json()
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export {
     create,
     index,
     show,
+    update
 }
