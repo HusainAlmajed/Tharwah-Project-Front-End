@@ -62,9 +62,25 @@ const update = async (transactionId, transactionData) => {
     }
 }
 
+const deleteTransaction = async (transactionId) => {
+    try {
+        const res = await fetch(`${BASE_URL}/${transactionId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+        const data = await res.json()
+        return data
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export {
     create,
     index,
     show,
-    update
+    update,
+    deleteTransaction
 }
