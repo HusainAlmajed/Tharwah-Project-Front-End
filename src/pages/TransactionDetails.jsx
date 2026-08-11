@@ -32,7 +32,7 @@ useEffect(() => {
 
             <div>
                 <h3>{transaction.transactionType}</h3>
-                {/* <h3>{transaction.category}</h3> */}
+                <h3>{transaction.category?.name}</h3>
                 <h3>{new Date(transaction.date).toLocaleDateString()}</h3>
                 <h3>{transaction.description}</h3>
             </div>
