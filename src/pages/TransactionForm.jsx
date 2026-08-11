@@ -32,10 +32,17 @@ useEffect(() => {
     const fetchTransaction = async () => {
         if (transactionId) {
             const transaction = await props.transactionServices.show(transactionId)
-            setTransactionData(transaction)
+            let categoryId = transaction.category
+            
+            if (transaction.category._id) {
+                categoryId = transaction.category._id
+            }
+            
+            setTransactionData({...transaction, 
+                date: transaction.date.slice(0, 10), 
+                category: categoryId})
         }
     }
-
     fetchTransaction()
 }, [transactionId])
 
