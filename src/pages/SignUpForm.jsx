@@ -32,7 +32,7 @@ const SignUpForm = (props) => {
     }
 
     const isFormValid = () => {
-        if(formData.username && formData.email && formData.password && formData.password === formData.confirmPassword) {
+        if(formData.username && formData.email && formData.password.length > 6 && formData.password === formData.confirmPassword) {
             return true
         } else return false
     }
@@ -62,14 +62,14 @@ const SignUpForm = (props) => {
                 <div className="auth-field">
                     <label>Password:</label>
                     <div className="auth-input">
-                        <input type="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter your password" required />
+                        <input type="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter your password" minLength={7} required />
                     </div>
                 </div>
 
                 <div className="auth-field">
                     <label>Confirm Password:</label>
                     <div className="auth-input">
-                        <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} placeholder="Confirm your password" required />
+                        <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} placeholder="Confirm your password" minLength={7} required />
                     </div>
                 </div>
 
