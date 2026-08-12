@@ -131,17 +131,17 @@ const Report = () => {
                                     hasTransactions ? (
                                     <div>
                                         <div className="cardSec">
-                                            <div className="card">
+                                            <div className="card income-card">
                                                 <p className="card-title">Income</p>
                                                 <h2>{income}</h2>
                                     </div>
 
-                                    <div className="card">
+                                    <div className="card expense-card">
                                         <p className="card-title">Expenses</p>
                                         <h2>{expense}</h2>
                                     </div>
 
-                                    <div className="card">
+                                    <div className="card balance-card">
                                         <p className="card-title">Balance</p>
                                         <h2>{balance}</h2>
                                     </div>
@@ -204,17 +204,17 @@ const Report = () => {
                         hasTransactions ? (
                             <div>
                                 <div className="cardSec">
-                                    <div className="card">
+                                    <div className="card income-card">
                                         <p className="card-title">Income</p>
                                         <h2>{income}</h2>
                                     </div>
 
-                                    <div className="card">
+                                    <div className="card expense-card">
                                         <p className="card-title">Expenses</p>
                                         <h2>{expense}</h2>
                                     </div>
 
-                                    <div className="card">
+                                    <div className="card balance-card">
                                         <p className="card-title">Balance</p>
                                         <h2>{balance}</h2>
                                     </div>
