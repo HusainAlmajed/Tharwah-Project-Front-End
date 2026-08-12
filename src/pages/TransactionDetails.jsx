@@ -10,6 +10,7 @@ const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 const { transactionId } = useParams()
 
 useEffect(() => {
+    document.title = "Transaction Details"
     const fetchData = async () => {
         const data = await transactionService.show(transactionId)
         setTransaction(data)

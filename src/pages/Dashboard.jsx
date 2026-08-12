@@ -14,6 +14,7 @@ const [balance , setBalance] = useState(0)
 const [monthlyTransactions, setMonthlyTransactions] = useState([])
 
     useEffect(() => {
+        document.title = "Dashboard"
         const fetchTransaction = async () => {
             const data =  await transactionService.index()
             setTransactions(data)

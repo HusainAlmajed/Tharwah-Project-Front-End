@@ -1,4 +1,10 @@
+import { useEffect } from "react"
+
 const Landing = () => {
+    useEffect(() => {
+        document.title = "Tharwah"
+    }, [])
+    
     return (
         <section className="card">
             <h1>Welcome!</h1>

@@ -29,6 +29,7 @@ useEffect(() => {
 }, [categoryId])
 
 useEffect(() => {
+    document.title = "Category Details"
     const fetchCategories = async () => {
         const categoriesData = await props.categoryServices.index()
         setCategories(categoriesData)

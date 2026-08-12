@@ -9,6 +9,7 @@ const { categoryId } = useParams()
 const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
 useEffect(() => {
+    document.title = "Category Details"
     const fetchData = async () => {
         const data = await categoryService.show(categoryId)
         setCategory(data)

@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router"
+import { useEffect } from "react"
 
 const NotFound = () => {
-    
+
+    useEffect(() => {
+        document.title = "Not Found"
+    }, [])
+
     const navigate = useNavigate()
 
     return (
