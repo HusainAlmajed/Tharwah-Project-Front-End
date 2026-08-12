@@ -57,7 +57,7 @@ const handleAddTransaction = async (transactionData) => {
     const newTransaction = await props.transactionServices.create(transactionData)
     console.log(newTransaction)
     // setTransactionData([newTransaction , ...setTransactionData])
-    // navigate('/transactions')
+    navigate('/transactions')
     setTransactionData(initialState)
 }
 
@@ -106,14 +106,15 @@ const handleSubmit = (event) => {
             <input type="Date" name="date" required onChange={handleChange} value={transactionData.date}/>
             </div>
 
-            {/* <input name="category" onChange={handleChange}/> */}
-            {/* FOR LATER: I want to display the categories related to the choosen transaction type */}
             <div className="form-field">
+            Category
             <select name="category" onChange={handleChange} value={transactionData.category}>
                 <option value="">Select Category</option>
-                {categories.map((category) => (
+                {categories.filter((category) => {
+                    return category.type === transactionData.transactionType
+                }).map((category) => (
                     <option key={category._id} value={category._id}>{category.name}</option>
-                ))}
+                ))} 
             </select>
             </div>
 

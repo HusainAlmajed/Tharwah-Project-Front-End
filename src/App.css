@@ -512,3 +512,14 @@ nav li a:hover {
 .transaction-row p:last-child {
   border-right: none;
 }
+
+.details-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.details-actions button {
+  min-width: 120px;
+}
