@@ -216,6 +216,12 @@ const Report = () => {
 
                                     <h2>{categoryView === "Expense" ? "Expenses by category" : "Income by category"}</h2>
 
+                                    <div className="monthlyCard">
+                                        <h2>Income vs Expenses</h2>
+                                        <p>Income: {income}</p>
+                                        <p>Expenses: {expense}</p>
+                                        </div>
+
                                     {categories.filter((category) => {
                                         return category.type === categoryView
                                     }).map((category) => {
@@ -232,7 +238,7 @@ const Report = () => {
                                                 categoryTotal = categoryTotal + transaction.amount
                                             }
                                         })
-
+                                        
                                         return (
                                             <div key={category._id}>
                                                 <p>{category.name}</p>
