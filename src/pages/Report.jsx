@@ -292,7 +292,7 @@ if (loading) return <main><div className="loader"></div></main>
                                             <CartesianGrid vertical={false} stroke="#edf1ee" />
                                             <XAxis dataKey="name" axisLine={false} tickLine={false} />
                                             <YAxis axisLine={false} tickLine={false} width={45} />
-                                            <Tooltip />
+                                            <Tooltip formatter={(value) => `${Number(value).toFixed(3)} BHD`} />
 
                                             <Area type="monotone" dataKey="Income" stroke="#5aad75" strokeWidth={3} fill="url(#incomeFill)" />
                                             <Area type="monotone" dataKey="Expenses" stroke="#f16c64" strokeWidth={3} fill="url(#expenseFill)" />
