@@ -152,6 +152,10 @@ const [topCategories, setTopCategories] = useState([])
             <div className="monthlyCard">
                 <h3>Monthly Cash Flow</h3>
                 <p>A timeline of your cash flow this month</p>
+
+                {monthlyTransactions.length === 0 ? (
+                    <p className="no-transactions">No transactions this month.</p>
+                ) : (
                 
                 <div className="monthly-content">
                 <div className="monthly-transactions">
@@ -211,6 +215,7 @@ const [topCategories, setTopCategories] = useState([])
                         </div>
                     </div>
                 </div>
+                )}
 
                 </div>
                 </section>
