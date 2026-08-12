@@ -35,7 +35,7 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
             })
 
             // to calculate the totals of the current month only
-            currentMonthTransactions.map((transaction) => {
+            data.map((transaction) => {
                 
                 if (transaction.transactionType === 'Income') {
                     income = income + transaction.amount
@@ -62,12 +62,12 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
 
         <section className="cardSec">
                 <div className="card">
-                    <p className="card-title">Income</p>
+                    <p className="card-title">Total Income</p>
                     <h2>{totalIncome} BHD</h2>
                 </div>
             
                 <div className="card">
-                    <p className="card-title">Expenses</p>
+                    <p className="card-title">Total Expenses</p>
                     <h2>{totalExpenses} BHD</h2>
                 </div>
             
@@ -76,14 +76,29 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
                     <h2>{balance} BHD</h2>
                 </div>
         </section>
-
+        
         <section className="monthly-section">
             <div className="monthlyCard">
                 <h3>Monthly Cash Flow</h3>
-            </div>
-        </section>
-        </div>
-        
+                <p>A timeline of your cash flow this month</p>
+                
+                <div className="monthly-transactions">
+                    {monthlyTransactions.map((transaction) => (
+                        <div className="monthly-transaction" key={transaction._id}>
+                            <div>
+                                <h4>{transaction.name}</h4>
+                                <p>{transaction.transactionType} • {transaction.category?.name}</p>
+                                </div>
+                                
+                                <p className={transaction.transactionType === 'Income' ? 'monthly-income' : 'monthly-expense'}>
+                                    {transaction.transactionType === 'Income' ? '+' : '-'} {transaction.amount} BHD
+                                    </p>
+                                    </div>
+                                ))}
+                                </div>
+                                </div>
+                                </section>
+                                </div> 
     )
 }
 
