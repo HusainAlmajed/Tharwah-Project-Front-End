@@ -135,17 +135,17 @@ const [topCategories, setTopCategories] = useState([])
         <section className="cardSec">
                 <div className="card">
                     <p className="card-title">Total Income</p>
-                    <h2>{totalIncome} BHD</h2>
+                    <h2>{totalIncome.toFixed(3)} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Total Expenses</p>
-                    <h2>{totalExpenses} BHD</h2>
+                    <h2>{totalExpenses.toFixed(3)} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Balance</p>
-                    <h2>{balance} BHD</h2>
+                    <h2>{balance.toFixed(3)} BHD</h2>
                 </div>
         </section>
         
@@ -167,7 +167,7 @@ const [topCategories, setTopCategories] = useState([])
                                 <p>{transaction.transactionType} • {transaction.category?.name}</p>
                                 </div>
                                 <p className={transaction.transactionType === 'Income' ? 'monthly-income' : 'monthly-expense'}>
-                                    {transaction.transactionType === 'Income' ? '+' : '-'} {transaction.amount} BHD
+                                    {transaction.transactionType === 'Income' ? '+' : '-'} {transaction.amount.toFixed(3)} BHD
                                     </p>
                                     </div>
                                 ))}
@@ -178,18 +178,18 @@ const [topCategories, setTopCategories] = useState([])
 
                     <div className="glance-row">
                         <p>Biggest inflow</p>
-                        <p className="monthly-income">+ {biggestInflow} BHD</p>
+                        <p className="monthly-income">+ {biggestInflow.toFixed(3)} BHD</p>
                     </div>
 
                     <div className="glance-row">
                         <p>Biggest outflow</p>
-                        <p className="monthly-expense">- {biggestOutflow} BHD</p>
+                        <p className="monthly-expense">- {biggestOutflow.toFixed(3)} BHD</p>
                     </div>
 
                     <div className="glance-row">
                         <p>Net change</p>
                         <p className={monthlyChange >= 0 ? 'monthly-income' : 'monthly-expense'}>
-                            {monthlyChange >= 0 ? '+' : ''} {monthlyChange} BHD
+                            {monthlyChange >= 0 ? '+' : ''} {monthlyChange.toFixed(3)} BHD
                         </p>
                     </div>
 
@@ -205,7 +205,7 @@ const [topCategories, setTopCategories] = useState([])
                             <div className="top-category-row" key={category.name}>
                                 <div className="top-category-info">
                                     <p>{category.name}</p>
-                                    <p>{category.percentage}% • {category.amount} BHD</p>
+                                    <p>{category.percentage}% • {category.amount.toFixed(3)} BHD</p>
                                 </div>
 
                                 <div className="top-category-bar">
