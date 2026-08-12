@@ -82,15 +82,19 @@ if (loading) return <main><div className="loader"></div></main>
                 <p>Date</p>
                 <p>Amount</p>
             </div>
-   {filteredTransactions.map((transaction) => (
-    <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
-        <p>{transaction.name}</p>
-        <p>{transaction.transactionType}</p>
-        <p>{transaction.category?.name}</p>
-        <p>{new Date(transaction.date).toLocaleDateString()}</p>
-        <p>{transaction.amount} BHD</p>
-    </Link>
-))}
+   {filteredTransactions.length === 0 ? (
+    <p className="no-transactions">No transactions available.</p>
+) : (
+    filteredTransactions.map((transaction) => (
+        <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
+            <p>{transaction.name}</p>
+            <p>{transaction.transactionType}</p>
+            <p>{transaction.category?.name}</p>
+            <p>{new Date(transaction.date).toLocaleDateString()}</p>
+            <p>{transaction.amount} BHD</p>
+        </Link>
+    ))
+)}
     </div>
     </div>
     )

@@ -1,5 +1,6 @@
 import { useState , useEffect } from "react"
 import { useNavigate, useParams } from "react-router"
+
 const TransactionForm = (props) => {
 
 const navigate = useNavigate()
@@ -17,18 +18,15 @@ const initialState = {
 
 const [transactionData , setTransactionData] = useState(initialState)
 const [categories , setCategories] = useState([])
+const [loading , setLoading] = useState(true)
 
 useEffect(() => {
     document.title = "Transaction Form"
-    const fetchCategories = async () => {
+
+    const fetchData = async () => {
         const categoriesData = await props.categoryServices.index()
         setCategories(categoriesData)
-    }
-    fetchCategories()
-}, [])
 
-useEffect(() => {
-    const fetchTransaction = async () => {
         if (transactionId) {
             const transaction = await props.transactionServices.show(transactionId)
             let categoryId = transaction.category
@@ -41,8 +39,11 @@ useEffect(() => {
                 date: transaction.date.slice(0, 10), 
                 category: categoryId})
         }
+
+        setLoading(false)
     }
-    fetchTransaction()
+
+    fetchData()
 }, [transactionId])
 
 const handleChange = (event) => {
@@ -69,6 +70,8 @@ const handleSubmit = (event) => {
     }
 }
 
+if (loading) return <main><div className="loader"></div></main>
+
     return (
         <div className="transactionForm">
         <h1>{transactionId ? 'Edit transaction' : 'Add transaction'}</h1>
@@ -81,7 +84,6 @@ const handleSubmit = (event) => {
                 <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>
             </div>
                 
-            {/* </div> */}
         <div className="transaction-form-grid">
             <div className="form-field">
             Name

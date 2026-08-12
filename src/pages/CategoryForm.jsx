@@ -13,9 +13,9 @@ const initialState = {
     description: '',
 }
 
-const [type , setType] = useState('')
 const [categoryData , setCategoryData] = useState(initialState)
 const [categories , setCategories] = useState([])
+const [loading , setLoading] = useState(true)
 
 useEffect(() => {
     const fetchCategory = async () => {
@@ -33,6 +33,7 @@ useEffect(() => {
     const fetchCategories = async () => {
         const categoriesData = await props.categoryServices.index()
         setCategories(categoriesData)
+        setLoading(false)
     }
     fetchCategories()
 }, [])
@@ -40,12 +41,6 @@ useEffect(() => {
 const handleChange = (event) => {
     setCategoryData({...categoryData , [event.target.name]: event.target.value})
 }   
-
-const handleType = (event) => {
-    setCategoryData({...categoryData , type: event.target.name})
-    setType(event.target.name)
-
-}
 
 const handleAddCategory = async (categoryData) => {
     const newCategory = await props.categoryServices.create(categoryData)
@@ -76,6 +71,8 @@ const incomeCate = categories.filter((category) => {
 const expenseCate = categories.filter((category) => {
     return category.type === 'Expense'
 })
+
+if (loading) return <main><div className="loader"></div></main>
 
     return (
         <div className="categoryForm">
@@ -112,21 +109,29 @@ const expenseCate = categories.filter((category) => {
     <div className="category-card">
         <h2>Income</h2>
 
-        {incomeCate.map((category) => (
-            <div key={category._id} className="category-item">
-                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
-            </div>
-        ))}
+        {incomeCate.length === 0 ? (
+    <p>No income categories available.</p>
+) : (
+    incomeCate.map((category) => (
+        <div key={category._id} className="category-item">
+            <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
+        </div>
+    ))
+)}
     </div>
 
     <div className="category-card">
         <h2>Expenses</h2>
 
-        {expenseCate.map((category) => (
-            <div key={category._id} className="category-item">
-                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
-            </div>
-        ))}
+       {expenseCate.length === 0 ? (
+    <p>No expense categories available.</p>
+) : (
+    expenseCate.map((category) => (
+        <div key={category._id} className="category-item">
+            <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
+        </div>
+    ))
+)}
     </div>
 </div>
         </div>

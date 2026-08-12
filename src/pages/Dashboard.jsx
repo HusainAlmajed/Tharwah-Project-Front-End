@@ -15,6 +15,7 @@ const [biggestOutflow, setBiggestOutflow] = useState(0)
 const [monthlyChange, setMonthlyChange] = useState(0)
 const [mostUsedCategory, setMostUsedCategory] = useState('')
 const [topCategories, setTopCategories] = useState([])
+const [loading , setLoading] = useState(true)
 
     useEffect(() => {
         document.title = "Dashboard"
@@ -112,10 +113,13 @@ const [topCategories, setTopCategories] = useState([])
             setTotalIncome(income)
             setTotalExpenses(expense)
             setBalance(income - expense)
+            setLoading(false)
         }
 
         fetchTransaction()
     }, [])
+
+    if (loading) return <main><div className="loader"></div></main>
 
     return (
         <div className="dashboard">
