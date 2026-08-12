@@ -1,9 +1,10 @@
 import { useEffect , useState } from "react"
 import * as transactionService from "../services/transaction"
-import { useParams } from "react-router"
+import { useParams , useNavigate } from "react-router"
 // import { Link } from "react-router"
 
 const TransactionDetails = () => {
+const navigate = useNavigate()
 
 const [transaction , setTransaction] = useState({})
 
@@ -19,10 +20,24 @@ useEffect(() => {
     fetchData()
 }, [transactionId])
 
+const handleDeleteTransaction = async () => {
+    await transactionService.deleteTransaction(transactionId)
+    navigate('/transactions')
+}
+
     return (
         <div className="transaction-details-card">
         {/* <h1>Details</h1> */}
         <div>
+            <div className="details-actions">
+        <button onClick={() => navigate(`/transactions/${transactionId}/edit`)}>
+        Edit
+        </button>
+
+        <button onClick={handleDeleteTransaction}>
+        Delete
+        </button>
+        </div>
             <div className="transaction-summary-card">
                 <div className="transaction-summary-info">
                 <h2>{transaction.name}</h2>
