@@ -1305,3 +1305,25 @@ button:disabled {
   background-color: #e85b5b;
   color: white;
 }
+
+.not-found {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.not-found h1 {
+  font-size: 80px;
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.not-found h2 {
+  margin-top: 10px;
+}
+
+.not-found p {
+  margin: 15px 0 25px;
+  color: #777;
+}
