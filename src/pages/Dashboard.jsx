@@ -15,6 +15,8 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
 const [biggestInflow, setBiggestInflow] = useState(0)
 const [biggestOutflow, setBiggestOutflow] = useState(0)
 const [monthlyChange, setMonthlyChange] = useState(0)
+const [mostUsedCategory, setMostUsedCategory] = useState('')
+const [topCategories, setTopCategories] = useState([])
 
     useEffect(() => {
         const fetchTransaction = async () => {
@@ -71,10 +73,39 @@ const [monthlyChange, setMonthlyChange] = useState(0)
                 }
             })
 
+            let categoryTotals = []
+
+            currentMonthTransactions.map((transaction) => {
+                const categoryName = transaction.category?.name
+
+                if (categoryName) {
+                    const category = categoryTotals.find((category) => category.name === categoryName)
+
+                    if (category) {
+                        category.amount = category.amount + transaction.amount
+                    } else {
+                        categoryTotals.push({
+                            name: categoryName,
+                            amount: transaction.amount
+                        })
+                    }
+                }
+            })
+
+            categoryTotals.sort((a, b) => b.amount - a.amount)
+
+            const topThreeCategories = categoryTotals.slice(0, 3)
+
         setMonthlyTransactions(currentMonthTransactions)
         setBiggestInflow(biggestIncome)
         setBiggestOutflow(biggestExpense)
         setMonthlyChange(monthlyIncome - monthlyExpense)
+        setTopCategories(topThreeCategories)
+
+        if (topThreeCategories.length > 0) {
+            setMostUsedCategory(topThreeCategories[0].name)
+        }
+
         setTotalIncome(income)
         setTotalExpenses(expense)
         setBalance(income - expense)
@@ -120,7 +151,6 @@ const [monthlyChange, setMonthlyChange] = useState(0)
                                 <h4>{transaction.name}</h4>
                                 <p>{transaction.transactionType} • {transaction.category?.name}</p>
                                 </div>
-                                
                                 <p className={transaction.transactionType === 'Income' ? 'monthly-income' : 'monthly-expense'}>
                                     {transaction.transactionType === 'Income' ? '+' : '-'} {transaction.amount} BHD
                                     </p>
@@ -145,11 +175,28 @@ const [monthlyChange, setMonthlyChange] = useState(0)
                         <p>Net change</p>
                         <p>{monthlyChange} BHD</p>
                     </div>
-                </div>
-                </div>
+
+                    <div className="glance-row">
+                        <p>Most used category</p>
+                        <p>{mostUsedCategory}</p>
+                    </div>
+
+                    <h3 className="top-categories-title">Top 3 categories this month</h3>
+
+                    <div className="top-categories">
+                        {topCategories.map((category) => (
+                            <div className="top-category-row" key={category.name}>
+                                <p>{category.name}</p>
+                                <p>{category.amount} BHD</p>
                                 </div>
-                                </section>
-                                </div> 
+                        ))}
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                </section>
+                </div> 
     )
 }
 
