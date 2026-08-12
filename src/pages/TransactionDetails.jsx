@@ -7,6 +7,7 @@ const navigate = useNavigate()
 
 const [transaction , setTransaction] = useState({})
 const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+const [loading , setLoading] = useState(true)
 const { transactionId } = useParams()
 
 useEffect(() => {
@@ -14,6 +15,7 @@ useEffect(() => {
     const fetchData = async () => {
         const data = await transactionService.show(transactionId)
         setTransaction(data)
+        setLoading(false)
     }
     fetchData()
 }, [transactionId])
@@ -22,6 +24,8 @@ const handleDeleteTransaction = async () => {
     await transactionService.deleteTransaction(transactionId)
     navigate('/transactions')
 }
+
+if (loading) return <main><div className="loader"></div></main>
 
     return (
         <div className="transaction-details-card">

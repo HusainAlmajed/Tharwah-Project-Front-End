@@ -12,15 +12,15 @@ const [monthFilter , setMonthFilter] = useState(new Date().toISOString().slice(0
 
 useEffect(() => {
     document.title = "Transactions List"
-    const fetchdData = async () => {
+    const fetchedData = async () => {
         const data = await transactionService.index()
         setTransaction(data)
         setLoading(false) 
     }
-    fetchdData()
+    fetchedData()
 }, [])
 
-const filterdTransactions = transactions.filter((transaction) => {
+const filteredTransactions = transactions.filter((transaction) => {
     const searchInput = transaction.name.toLowerCase().includes(search.toLowerCase())
 
     const typeInput = typeFilter === 'All' || transaction.transactionType === typeFilter
@@ -60,7 +60,6 @@ if (loading) return <main><div className="loader"></div></main>
 
             <div>
                 <label>Type</label>
-                {/* So the inputed value can be used for the filltering */}
                 <select value={typeFilter} onChange={(event) => {setTypeFilter(event.target.value)}}> 
                     <option>All</option>
                     <option>Income</option>
@@ -83,16 +82,19 @@ if (loading) return <main><div className="loader"></div></main>
                 <p>Date</p>
                 <p>Amount</p>
             </div>
-{/* to loop through the filterd transactions */}
-   {filterdTransactions.map((transaction) => (
-    <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
-        <p>{transaction.name}</p>
-        <p>{transaction.transactionType}</p>
-        <p>{transaction.category?.name}</p>
-        <p>{new Date(transaction.date).toLocaleDateString()}</p>
-        <p>{transaction.amount} BHD</p>
-    </Link>
-))}
+   {filteredTransactions.length === 0 ? (
+    <p className="no-transactions">No transactions available.</p>
+) : (
+    filteredTransactions.map((transaction) => (
+        <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
+            <p>{transaction.name}</p>
+            <p>{transaction.transactionType}</p>
+            <p>{transaction.category?.name}</p>
+            <p>{new Date(transaction.date).toLocaleDateString()}</p>
+            <p>{transaction.amount} BHD</p>
+        </Link>
+    ))
+)}
     </div>
     </div>
     )
