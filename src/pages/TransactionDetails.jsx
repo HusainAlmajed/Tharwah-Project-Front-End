@@ -14,8 +14,6 @@ useEffect(() => {
     const fetchData = async () => {
         const data = await transactionService.show(transactionId)
         setTransaction(data)
-        console.log(data)
-        console.log('name is ' + data.name)
     }
     fetchData()
 }, [transactionId])
@@ -34,7 +32,7 @@ const handleDeleteTransaction = async () => {
         Edit
         </button>
 
-        <button onClick={handleDeleteTransaction}>
+        <button className="delete-button" onClick={handleDeleteTransaction}>
         Delete
         </button>
         </div>

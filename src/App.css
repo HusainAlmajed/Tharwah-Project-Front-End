@@ -1051,3 +1051,212 @@ button:disabled {
     padding: 25px;
   }
 }
+
+.categoryForm {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.categoryForm h1 {
+  margin-bottom: 40px;
+}
+
+.transaction-form-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  width: 100%;
+}
+
+.category-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-field label {
+  font-weight: 600;
+}
+
+.category-field input {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.category-field:first-child {
+  width: 220px;
+}
+
+.category-field.description {
+  flex: 1;
+}
+
+.category-type-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.category-type-buttons button {
+  height: 42px;
+  min-width: 100px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.form-actions button {
+  height: 42px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.category-lists {
+  display: flex;
+  gap: 30px;
+  margin-top: 45px;
+}
+
+.category-card {
+  flex: 1;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 24px;
+}
+
+.category-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.category-item {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.category-item:last-child {
+  border-bottom: none;
+}
+
+.category-item a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+}
+
+.category-item h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.category-details {
+  width: 100%;
+  max-width: 900px;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.category-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.category-header button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.category-header button:hover {
+  opacity: 0.9;
+}
+
+.category-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 28px 30px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.category-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.category-detail p {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.category-detail h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.category-card > button {
+  width: fit-content;
+  padding: 10px 22px;
+
+  border: 1px solid #e85b5b;
+  border-radius: 8px;
+
+  background-color: #fff5f5;
+  color: #e85b5b;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  margin-top: 5px;
+}
+
+.category-card > button:hover {
+  background-color: #e85b5b;
+  color: white;
+}
+
+.delete-button {
+  padding: 10px 22px;
+  border: 1px solid #e85b5b;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  color: #e85b5b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #e85b5b;
+  color: white;
+}
