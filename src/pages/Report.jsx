@@ -5,8 +5,6 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 
 const Report = () => {
     const [reportType, setReportType] = useState("Monthly")
-    const [selectedMonth, setSelectedMonth] = useState("")
-    const [selectedYear, setSelectedYear] = useState("")
     const [transactions, setTransactions] = useState([])
     const [income, setIncome] = useState(0)
     const [expense, setExpense] = useState(0)
@@ -15,11 +13,23 @@ const Report = () => {
     const [categoryView, setCategoryView] = useState("Expense")
     const [categories, setCategories] = useState([])
     const [chartData, setChartData] = useState([])
+    const date = new Date() // to get the current date
+    // so the default state of the date will always be the current year and month
+    const [selectedMonth, setSelectedMonth] = useState(
+        date.getMonth().toString()
+    )
+    const [selectedYear, setSelectedYear] = useState(
+        date.getFullYear().toString()
+    )
+    const [loading , setLoading] = useState(true) 
+
+
 
     useEffect(() => {
         const fetchTransactions = async () => {
             const data = await transactionService.index()
             setTransactions(data)
+            setLoading(false) // so whenever we have the data, loading animation will stop
         }
 
         fetchTransactions()
@@ -169,6 +179,8 @@ const Report = () => {
     const periodSelected = reportType === "Monthly" ? selectedMonth !== "" && selectedYear !== "" : selectedYear !== ""
     const categoryTypeTotal = categoryView === "Expense" ? expense : income
 
+if (loading) return <main><div className="loader"></div></main>
+
     return (
         <div className="report">
             <div className="report-top">
@@ -308,7 +320,7 @@ const Report = () => {
 
                                         if (
                                             transaction.transactionType === categoryView &&
-                                            transaction.category === category._id
+                                            transaction.category?._id === category._id
                                         ) {
                                             if (
                                                 reportType === "Monthly" &&
