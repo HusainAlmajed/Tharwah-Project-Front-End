@@ -2,13 +2,6 @@
   min-height: 100vh;
 }
 
-.app-main {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 48px 24px;
-}
-
 @media (max-width: 600px) {
   .app-main {
     padding: 32px 16px;
@@ -169,17 +162,6 @@ button:disabled {
 .app-layout {
   display: flex;
   min-height: 100vh;
-}
-
-nav {
-  display: flex;
-  width: 200px;
-  min-height: 100vh;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-surface);
-  padding: 20px;
 }
 
 .app-main {
@@ -414,4 +396,110 @@ nav li a:hover {
   .form-actions button {
     flex: 1;
   }
+}
+
+.category-lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 10px;
+}
+
+.category-card {
+  padding: 25px;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.category-card h2 {
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+
+.category-item {
+  padding: 16px;
+  margin-bottom: 16px;
+
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.category-item:last-child {
+  margin-bottom: 0;
+}
+
+.category-item h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+@media (max-width: 700px) {
+  .category-lists {
+    grid-template-columns: 1fr;
+  }
+}
+
+.transaction-list {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.transaction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.transaction-header h1 {
+  margin: 0;
+}
+
+.transaction-filters {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.transaction-filters div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.transaction-filters input,
+.transaction-filters select {
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+.transaction-table {
+  width: 100%;
+}
+
+.transaction-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.transaction-row p {
+  margin: 0;
+  padding: 16px;
+  border-right: 1px solid var(--color-border);
+}
+
+.transaction-row p:last-child {
+  border-right: none;
 }
