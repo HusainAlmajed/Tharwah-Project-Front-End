@@ -89,41 +89,47 @@ const expenseCate = categories.filter((category) => {
         <h1>{categoryId ? 'Edit Category' : 'Add a Category'}</h1>
 
         <form onSubmit={handleSubmit}>
-            <label>Category Name</label>
-            <input type="String" name="name" required maxLength={35} onChange={handleChange} value={categoryData.name} />
-
+            <div className="transaction-form-grid">
+            <div className="form-field">
+                <label>Category Name</label>
+                <input type="String" name="name" required maxLength={35} onChange={handleChange} value={categoryData.name} />
+            </div>
+            <div className="form-field">
            <label>Category type</label>
             {/* <div className="typeButton" onClick={handleType}> */}
                 {/* we're giving the button a value, since the use is not inputing anything */}
                 <button type="button" value={'Income'} name="type" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="type" onClick={handleChange}>Expense</button>
-            {/* </div> */}
-        <div>
+            </div>
+        <div className="form-field description">
             <label>Description</label>
             <input type="String" name="description" maxLength={350} onChange={handleChange} value={categoryData.description} />
         </div>
+        <div className="form-actions">
             <button>
                 {categoryId ? 'Update Category' : 'Add Category'}
             </button>
+            </div>
+            </div>
         </form>
 
 <div className="category-lists">
 
-    <div className="income-categories">
+    <div className="category-card">
         <h2>Income</h2>
 
         {incomeCate.map((category) => (
-            <div key={category._id}>
+            <div key={category._id} className="category-item">
                 <h3>{category.name}</h3>
             </div>
         ))}
     </div>
 
-    <div className="expense-categories">
+    <div className="category-card">
         <h2>Expenses</h2>
 
         {expenseCate.map((category) => (
-            <div key={category._id}>
+            <div key={category._id} className="category-item">
                 <h3>{category.name}</h3>
             </div>
         ))}
