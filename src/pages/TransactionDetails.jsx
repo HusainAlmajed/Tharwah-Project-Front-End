@@ -1,13 +1,12 @@
 import { useEffect , useState } from "react"
 import * as transactionService from "../services/transaction"
 import { useParams , useNavigate } from "react-router"
-// import { Link } from "react-router"
 
 const TransactionDetails = () => {
 const navigate = useNavigate()
 
 const [transaction , setTransaction] = useState({})
-
+const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 const { transactionId } = useParams()
 
 useEffect(() => {
@@ -25,17 +24,26 @@ const handleDeleteTransaction = async () => {
 
     return (
         <div className="transaction-details-card">
-        {/* <h1>Details</h1> */}
         <div>
             <div className="details-actions">
         <button onClick={() => navigate(`/transactions/${transactionId}/edit`)}>
         Edit
         </button>
 
-        <button className="delete-button" onClick={handleDeleteTransaction}>
+        <button className="delete-button" onClick={() => setShowDeleteConfirm(true)}>
         Delete
         </button>
         </div>
+        {/* Confirmation message */}
+        {showDeleteConfirm && (
+            <div className="delete-confirm">
+                <p>Are you sure you want to delete this transaction?</p>
+                <div className="delete-confirm-actions">
+                    <button type="button" onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
+                    <button type="button" className="delete-button" onClick={handleDeleteTransaction}>Delete</button>
+                    </div>
+            </div>
+        )}
             <div className="transaction-summary-card">
                 <div className="transaction-summary-info">
                 <h2>{transaction.name}</h2>

@@ -6,7 +6,7 @@ const CategoryDetails = () => {
 const navigate = useNavigate()
 const [category , setCategory] = useState({})
 const { categoryId } = useParams()
-
+const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
 useEffect(() => {
     const fetchData = async () => {
@@ -40,10 +40,19 @@ const handleDeleteCategory = async () => {
                 <h3>{category.description || 'No description'}</h3>
             </div>
 
-             <button onClick={handleDeleteCategory}>
+             <button onClick={() => setShowDeleteConfirm(true)}>
             Delete
             </button>
-            
+            {showDeleteConfirm && (
+                <div className="delete-confirm">
+                    <p>Are you sure you want to delete this category?</p>
+                    <div className="delete-confirm-actions">
+                        <button type="button" onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
+                        <button type="button" className="delete-button" onClick={handleDeleteCategory}>Delete</button>
+                    </div>
+                </div>
+            )}
+
         </div>
 
         </div>
