@@ -126,7 +126,7 @@ const [topCategories, setTopCategories] = useState([])
     return (
         <div className="dashboard">
             <div className="dashboard-header">
-                <h1>Dashbaord</h1>
+                <h1>Dashboard</h1>
 
                 <button onClick={() => navigate('transactions/new')}>+ Add Transaction</button>
             </div>
