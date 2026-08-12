@@ -186,8 +186,14 @@ const [topCategories, setTopCategories] = useState([])
                     <div className="top-categories">
                         {topCategories.map((category) => (
                             <div className="top-category-row" key={category.name}>
-                                <p>{category.name}</p>
-                                <p>{category.amount} BHD</p>
+                                <div className="top-category-info">
+                                    <p>{category.name}</p>
+                                    <p>{category.amount} BHD</p>
+                                </div>
+
+                                <div className="top-category-bar">
+                                    <div className="top-category-fill" style={{ width: `${topCategories[0] ? (category.amount / topCategories[0].amount) * 100 : 0}%` }}></div>
+                                </div>
                                 </div>
                         ))}
                         </div>
