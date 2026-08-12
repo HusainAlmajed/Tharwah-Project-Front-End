@@ -13,7 +13,7 @@ import * as categoryServices from "./services/category"
 import TransactionList from "./pages/TransactionList"
 import TransactionDetails from "./pages/TransactionDetails"
 import CategoryList from "./pages/CategoryList"
-
+import Report from "./pages/Report"
 
 const getUserFromToken = () => {
   const token = localStorage.getItem('token')
@@ -42,6 +42,7 @@ const App = () => {
         <Route path="/transactions/:transactionId/edit" element={<TransactionForm transactionServices={transactionServices} categoryServices={categoryServices} />} />
         <Route path="/categories/:categoryId/edit" element={<CategoryForm categoryServices={categoryServices} />} />
         <Route path="/categories" element={<CategoryList />} />
+        <Route path="/report" element={<Report />} />
       </Routes>
       </main>
     </div>
