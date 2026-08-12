@@ -11,14 +11,13 @@ const[transactions , setTransactions] = useState([])
 const [totalIncome , setTotalIncome] = useState(0)
 const [totalExpenses , setTotalExpenses] = useState(0)
 const [balance , setBalance] = useState(0)
+const [monthlyTransactions, setMonthlyTransactions] = useState([])
 
     useEffect(() => {
         const fetchTransaction = async () => {
             const data =  await transactionService.index()
             setTransactions(data)
             console.log("data" , data)
-            // console.log("data" , data)
-            // setTotal(data.amount)
 
             let income = 0
             let expense = 0
@@ -27,23 +26,28 @@ const [balance , setBalance] = useState(0)
             const currentMonth = currentDate.getMonth()
             const currentYear = currentDate.getFullYear()
             
-            data.map((transaction) => {
-                const transactionDate = new Date(transaction.date)
+            // to fillter the transactions using current date
+            const currentMonthTransactions = data.filter((transaction) => {
+                const date = new Date(transaction.date)
+                return (
+                    date.getMonth() === currentMonth && date.getFullYear() === currentYear
+                )
+            })
+
+            // to calculate the totals of the current month only
+            currentMonthTransactions.map((transaction) => {
                 
-                if (transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear) {
-                    if (transaction.transactionType === 'Income') {
-            income = income + transaction.amount
-        } else if (transaction.transactionType === 'Expense') {
+                if (transaction.transactionType === 'Income') {
+                    income = income + transaction.amount
+                } else if (transaction.transactionType === 'Expense') {
             expense = expense + transaction.amount
-        }
 
     }
-})
+})      
+        setMonthlyTransactions(currentMonthTransactions)
         setTotalIncome(income)
         setTotalExpenses(expense)
         setBalance(income - expense)
-        console.log(income)
-        console.log(totalIncome)
         }
         fetchTransaction()
     }, [])
@@ -59,17 +63,17 @@ const [balance , setBalance] = useState(0)
         <section className="cardSec">
                 <div className="card">
                     <p className="card-title">Income</p>
-                    <h2>BHD {totalIncome}</h2>
+                    <h2>{totalIncome} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Expenses</p>
-                    <h2>BHD {totalExpenses}</h2>
+                    <h2>{totalExpenses} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Balance</p>
-                    <h2>BHD {balance}</h2>
+                    <h2>{balance} BHD</h2>
                 </div>
         </section>
 
