@@ -12,6 +12,9 @@ const [totalIncome , setTotalIncome] = useState(0)
 const [totalExpenses , setTotalExpenses] = useState(0)
 const [balance , setBalance] = useState(0)
 const [monthlyTransactions, setMonthlyTransactions] = useState([])
+const [biggestInflow, setBiggestInflow] = useState(0)
+const [biggestOutflow, setBiggestOutflow] = useState(0)
+const [monthlyChange, setMonthlyChange] = useState(0)
 
     useEffect(() => {
         const fetchTransaction = async () => {
@@ -44,7 +47,34 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
 
     }
 })      
+
+            let monthlyIncome = 0
+            let monthlyExpense = 0
+            let biggestIncome = 0
+            let biggestExpense = 0
+
+            currentMonthTransactions.map((transaction) => {
+
+                if (transaction.transactionType === 'Income') {
+                    monthlyIncome = monthlyIncome + transaction.amount
+
+                    if (transaction.amount > biggestIncome) {
+                        biggestIncome = transaction.amount
+                    }
+
+                } else if (transaction.transactionType === 'Expense') {
+                    monthlyExpense = monthlyExpense + transaction.amount
+
+                    if (transaction.amount > biggestExpense) {
+                        biggestExpense = transaction.amount
+                    }
+                }
+            })
+
         setMonthlyTransactions(currentMonthTransactions)
+        setBiggestInflow(biggestIncome)
+        setBiggestOutflow(biggestExpense)
+        setMonthlyChange(monthlyIncome - monthlyExpense)
         setTotalIncome(income)
         setTotalExpenses(expense)
         setBalance(income - expense)
@@ -82,6 +112,7 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
                 <h3>Monthly Cash Flow</h3>
                 <p>A timeline of your cash flow this month</p>
                 
+                <div className="monthly-content">
                 <div className="monthly-transactions">
                     {monthlyTransactions.map((transaction) => (
                         <div className="monthly-transaction" key={transaction._id}>
@@ -96,6 +127,26 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
                                     </div>
                                 ))}
                                 </div>
+
+                <div className="monthly-glance">
+                    <h3>This month at a glance</h3>
+
+                    <div className="glance-row">
+                        <p>Biggest inflow</p>
+                        <p className="monthly-income">+ {biggestInflow} BHD</p>
+                    </div>
+
+                    <div className="glance-row">
+                        <p>Biggest outflow</p>
+                        <p className="monthly-expense">- {biggestOutflow} BHD</p>
+                    </div>
+
+                    <div className="glance-row">
+                        <p>Net change</p>
+                        <p>{monthlyChange} BHD</p>
+                    </div>
+                </div>
+                </div>
                                 </div>
                                 </section>
                                 </div> 
