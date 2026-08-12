@@ -1051,3 +1051,52 @@ button:disabled {
     padding: 25px;
   }
 }
+
+.monthlyCard {
+  height: auto;
+}
+
+.monthlyCard > p {
+  margin-top: 6px;
+  margin-bottom: 22px;
+  color: var(--color-text-light);
+}
+
+.monthly-transactions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.monthly-transaction {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.monthly-transaction h4 {
+  margin: 0 0 5px 0;
+}
+
+.monthly-transaction p {
+  margin: 0;
+}
+
+.monthly-transaction > div p {
+  color: var(--color-text-light);
+  font-size: 14px;
+}
+
+.monthly-income {
+  color: #459762;
+  font-weight: 700;
+}
+
+.monthly-expense {
+  color: #e15e58;
+  font-weight: 700;
+}
