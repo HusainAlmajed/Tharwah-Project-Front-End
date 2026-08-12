@@ -25,7 +25,12 @@ const filterdTransactions = transactions.filter((transaction) => {
 
     const typeInput = typeFilter === 'All' || transaction.transactionType === typeFilter
 
-    return searchInput && typeInput
+
+    const date = new Date(transaction.date)
+    const month = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2 , '0')}` 
+    const dateInput = month === monthFilter
+
+    return searchInput && typeInput && dateInput
 })
 
 const handleDeleteTransaction = async (transactionId) => {
@@ -65,7 +70,7 @@ if (loading) return <main><div className="loader"></div></main>
 
             <div>
                 <label>Month</label>
-                <input type="month"/>
+                <input type="month" value={monthFilter} onChange={(event) => setMonthFilter(event.target.value)}/>
             </div>
         </div>
 
