@@ -1,5 +1,6 @@
 import { useState , useEffect} from "react"
 import { useNavigate, useParams } from "react-router"
+import { Link } from "react-router"
 
 const CategoryForm = (props) => {
 
@@ -120,7 +121,7 @@ const expenseCate = categories.filter((category) => {
 
         {incomeCate.map((category) => (
             <div key={category._id} className="category-item">
-                <h3>{category.name}</h3>
+                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
             </div>
         ))}
     </div>
@@ -130,7 +131,7 @@ const expenseCate = categories.filter((category) => {
 
         {expenseCate.map((category) => (
             <div key={category._id} className="category-item">
-                <h3>{category.name}</h3>
+                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
             </div>
         ))}
     </div>
