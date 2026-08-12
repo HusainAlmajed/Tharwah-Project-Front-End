@@ -183,7 +183,9 @@ const [topCategories, setTopCategories] = useState([])
 
                     <div className="glance-row">
                         <p>Net change</p>
-                        <p>{monthlyChange} BHD</p>
+                        <p className={monthlyChange >= 0 ? 'monthly-income' : 'monthly-expense'}>
+                            {monthlyChange >= 0 ? '+' : ''} {monthlyChange} BHD
+                        </p>
                     </div>
 
                     <div className="glance-row">
