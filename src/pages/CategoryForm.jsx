@@ -1,5 +1,6 @@
 import { useState , useEffect} from "react"
 import { useNavigate, useParams } from "react-router"
+import { Link } from "react-router"
 
 const CategoryForm = (props) => {
 
@@ -89,19 +90,21 @@ const expenseCate = categories.filter((category) => {
         <h1>{categoryId ? 'Edit Category' : 'Add a Category'}</h1>
 
         <form onSubmit={handleSubmit}>
-            <div className="transaction-form-grid">
-            <div className="form-field">
+            <div className="transaction-form-row">
+            <div className="category-field">
                 <label>Category Name</label>
                 <input type="String" name="name" required maxLength={35} onChange={handleChange} value={categoryData.name} />
             </div>
-            <div className="form-field">
+            <div className="category-field">
            <label>Category type</label>
-            {/* <div className="typeButton" onClick={handleType}> */}
+           <div className="category-type-buttons">
                 {/* we're giving the button a value, since the use is not inputing anything */}
                 <button type="button" value={'Income'} name="type" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="type" onClick={handleChange}>Expense</button>
+           </div>
+                
             </div>
-        <div className="form-field description">
+        <div className="category-field description">
             <label>Description</label>
             <input type="String" name="description" maxLength={350} onChange={handleChange} value={categoryData.description} />
         </div>
@@ -120,7 +123,7 @@ const expenseCate = categories.filter((category) => {
 
         {incomeCate.map((category) => (
             <div key={category._id} className="category-item">
-                <h3>{category.name}</h3>
+                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
             </div>
         ))}
     </div>
@@ -130,7 +133,7 @@ const expenseCate = categories.filter((category) => {
 
         {expenseCate.map((category) => (
             <div key={category._id} className="category-item">
-                <h3>{category.name}</h3>
+                <Link to={`/categories/${category._id}`} key={category._id}><h3>{category.name}</h3></Link>
             </div>
         ))}
     </div>
