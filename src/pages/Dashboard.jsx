@@ -63,17 +63,17 @@ const [monthlyTransactions, setMonthlyTransactions] = useState([])
         <section className="cardSec">
                 <div className="card">
                     <p className="card-title">Income</p>
-                    <h2>{totalIncome} BHD</h2>
+                    <h2>{totalIncome.toFixed(3)} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Expenses</p>
-                    <h2>{totalExpenses} BHD</h2>
+                    <h2>{totalExpenses.toFixed(3)} BHD</h2>
                 </div>
             
                 <div className="card">
                     <p className="card-title">Balance</p>
-                    <h2>{balance} BHD</h2>
+                    <h2>{balance.toFixed(3)} BHD</h2>
                 </div>
         </section>
 

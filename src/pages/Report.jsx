@@ -244,7 +244,7 @@ if (loading) return <main><div className="loader"></div></main>
                                     <p>Income</p>
                                     <span className="summary-icon income-icon">↗</span>
                                 </div>
-                                <h2>{income} BHD</h2>
+                                <h2>{income.toFixed(3)} BHD</h2>
                             </div>
 
                             <div className="report-summary-card expense-summary">
@@ -252,7 +252,7 @@ if (loading) return <main><div className="loader"></div></main>
                                     <p>Expenses</p>
                                     <span className="summary-icon expense-icon">↓</span>
                                 </div>
-                                <h2>{expense} BHD</h2>
+                                <h2>{expense.toFixed(3)} BHD</h2>
                             </div>
 
                             <div className="report-summary-card balance-summary">
@@ -260,7 +260,7 @@ if (loading) return <main><div className="loader"></div></main>
                                     <p>Balance</p>
                                     <span className="summary-icon balance-icon">▣</span>
                                 </div>
-                                <h2>{balance} BHD</h2>
+                                <h2>{balance.toFixed(3)} BHD</h2>
                             </div>
                         </div>
 
