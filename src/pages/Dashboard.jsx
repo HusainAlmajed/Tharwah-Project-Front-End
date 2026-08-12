@@ -92,6 +92,16 @@ const [topCategories, setTopCategories] = useState([])
                 }
             })
 
+            let totalCategoryAmount = 0
+
+            categoryTotals.map((category) => {
+                totalCategoryAmount = totalCategoryAmount + category.amount
+            })
+
+            categoryTotals.map((category) => {
+                category.percentage = Math.round((category.amount / totalCategoryAmount) * 100)
+            })
+
             categoryTotals.sort((a, b) => b.amount - a.amount)
 
             const topThreeCategories = categoryTotals.slice(0, 3)
@@ -188,11 +198,11 @@ const [topCategories, setTopCategories] = useState([])
                             <div className="top-category-row" key={category.name}>
                                 <div className="top-category-info">
                                     <p>{category.name}</p>
-                                    <p>{category.amount} BHD</p>
+                                    <p>{category.percentage}% • {category.amount} BHD</p>
                                 </div>
 
                                 <div className="top-category-bar">
-                                    <div className="top-category-fill" style={{ width: `${topCategories[0] ? (category.amount / topCategories[0].amount) * 100 : 0}%` }}></div>
+                                    <div className="top-category-fill" style={{ width: `${category.percentage}%` }}></div>
                                 </div>
                                 </div>
                         ))}
