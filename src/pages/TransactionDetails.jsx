@@ -35,7 +35,6 @@ const handleDeleteTransaction = async () => {
         Delete
         </button>
         </div>
-        {/* Confirmation message */}
         {showDeleteConfirm && (
             <div className="delete-confirm">
                 <p>Are you sure you want to delete this transaction?</p>

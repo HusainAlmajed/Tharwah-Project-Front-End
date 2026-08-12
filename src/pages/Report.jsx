@@ -13,8 +13,7 @@ const Report = () => {
     const [categoryView, setCategoryView] = useState("Expense")
     const [categories, setCategories] = useState([])
     const [chartData, setChartData] = useState([])
-    const date = new Date() // to get the current date
-    // so the default state of the date will always be the current year and month
+    const date = new Date() 
     const [selectedMonth, setSelectedMonth] = useState(
         date.getMonth().toString()
     )
@@ -30,7 +29,7 @@ const Report = () => {
         const fetchTransactions = async () => {
             const data = await transactionService.index()
             setTransactions(data)
-            setLoading(false) // so whenever we have the data, loading animation will stop
+            setLoading(false) 
         }
 
         fetchTransactions()

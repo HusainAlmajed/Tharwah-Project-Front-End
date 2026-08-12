@@ -18,13 +18,11 @@ const initialState = {
 const [transactionData , setTransactionData] = useState(initialState)
 const [categories , setCategories] = useState([])
 
-// To get all the categories 
 useEffect(() => {
     document.title = "Transaction Form"
     const fetchCategories = async () => {
         const categoriesData = await props.categoryServices.index()
         setCategories(categoriesData)
-        console.log(categoriesData)
     }
     fetchCategories()
 }, [])
@@ -48,23 +46,17 @@ useEffect(() => {
 }, [transactionId])
 
 const handleChange = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
-    // so we can display the change in the form
     setTransactionData({...transactionData , [event.target.name]: event.target.value})
 }
-// we are calling the create function from transaction services and passing it thr form data
+
 const handleAddTransaction = async (transactionData) => {
     const newTransaction = await props.transactionServices.create(transactionData)
-    console.log(newTransaction)
-    // setTransactionData([newTransaction , ...setTransactionData])
     navigate('/transactions')
     setTransactionData(initialState)
 }
 
 const handleUpdateTransaction = async (transactionData) => {
     const updatedTransaction = await props.transactionServices.update(transactionId, transactionData)
-    console.log(updatedTransaction)
     navigate('/transactions')
 }
 
@@ -83,8 +75,7 @@ const handleSubmit = (event) => {
 
         <form onSubmit={handleSubmit} className="transaction-form">
             <label>Transaction type</label>
-            {/* <div className="typeButton"> */}
-            {/* we're giving the button a value, since the use is not inputing anything */}
+
             <div className="type-button">
                 <button type="button" value={'Income'} name="transactionType" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="transactionType" onClick={handleChange}>Expense</button>

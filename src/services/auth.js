@@ -41,7 +41,6 @@ const signIn = async (formData) => {
 
         if (data.token) {
             localStorage.setItem('token', data.token)
-            // returning the user object
             return JSON.parse(atob(data.token.split('.')[1])).payload
         }
 
