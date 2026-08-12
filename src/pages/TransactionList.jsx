@@ -56,7 +56,7 @@ if (loading) return <main><div className="loader"></div></main>
             <div>
                 <label>Type</label>
                 {/* So the inputed value can be used for the filltering */}
-                <select value={typeFilter} onChange={(event) => {setMonthFilter(event.target.value)}}> 
+                <select value={typeFilter} onChange={(event) => {setTypeFilter(event.target.value)}}> 
                     <option>All</option>
                     <option>Income</option>
                     <option>Expense</option>
@@ -78,8 +78,8 @@ if (loading) return <main><div className="loader"></div></main>
                 <p>Date</p>
                 <p>Amount</p>
             </div>
-
-   {transactions.map((transaction) => (
+{/* to loop through the filterd transactions */}
+   {filterdTransactions.map((transaction) => (
     <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
         <p>{transaction.name}</p>
         <p>{transaction.transactionType}</p>
