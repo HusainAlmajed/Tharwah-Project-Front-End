@@ -357,7 +357,7 @@ if (loading) return <main><div className="loader"></div></main>
                                                 </div>
 
                                                 <p className="category-percent">{categoryPercentage}%</p>
-                                                <p className="category-amount">{categoryTotal} BHD</p>
+                                                <p className="category-amount">{categoryTotal.toFixed(0)} BHD</p>
                                             </div>
                                         )
                                     }
