@@ -19,6 +19,7 @@ const [mostUsedCategory, setMostUsedCategory] = useState('')
 const [topCategories, setTopCategories] = useState([])
 
     useEffect(() => {
+        document.title = "Dashboard"
         const fetchTransaction = async () => {
             const data =  await transactionService.index()
             setTransactions(data)

@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router"
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { signIn } from "../services/auth"
 
 const SignInForm = (props) => {
+
+    useEffect(() => {
+        document.title = "Sign In"
+    }, [])
 
     const navigate = useNavigate()
 

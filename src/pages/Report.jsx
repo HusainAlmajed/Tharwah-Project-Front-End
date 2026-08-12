@@ -26,6 +26,7 @@ const Report = () => {
 
 
     useEffect(() => {
+        document.title = "Reports"
         const fetchTransactions = async () => {
             const data = await transactionService.index()
             setTransactions(data)

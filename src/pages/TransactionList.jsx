@@ -11,6 +11,7 @@ const [typeFilter , setTypeFilter] = useState('All') // so the default type will
 const [monthFilter , setMonthFilter] = useState(new Date().toISOString().slice(0 , 7))
 
 useEffect(() => {
+    document.title = "Transactions List"
     const fetchdData = async () => {
         const data = await transactionService.index()
         setTransaction(data)

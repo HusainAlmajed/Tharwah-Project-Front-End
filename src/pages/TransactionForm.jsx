@@ -20,6 +20,7 @@ const [categories , setCategories] = useState([])
 
 // To get all the categories 
 useEffect(() => {
+    document.title = "Transaction Form"
     const fetchCategories = async () => {
         const categoriesData = await props.categoryServices.index()
         setCategories(categoriesData)

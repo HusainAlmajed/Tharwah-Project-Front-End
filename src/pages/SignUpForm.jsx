@@ -1,8 +1,12 @@
-import { useState } from "react"
+import { useState , useEffect } from "react"
 import { signUp } from "../services/auth"
 import { useNavigate } from "react-router"
 
 const SignUpForm = (props) => {
+
+ useEffect(() => {
+        document.title = "Sign Up"
+    }, [])
 
     const navigate = useNavigate()
 

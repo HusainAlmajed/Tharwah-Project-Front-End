@@ -8,6 +8,7 @@ const [categories , setCategories] = useState([])
 const [loading , setLoading] = useState(true)
 
 useEffect(() => {
+    document.title = "Category List"
     const fetchData = async () => {
         const data = await categoryService.index()
         setCategories(data)
