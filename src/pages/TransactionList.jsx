@@ -28,14 +28,52 @@ if (loading) return <main><div className="loader"></div></main>
 
     return (
     <div className="transaction-list">
-    <h1>Transactions</h1>
-    {transactions.map((transaction) => (
-        <div className="transaction" key={transaction._id}>
-            <Link to={`/transactions/${transaction._id}`}><h3>{transaction.name}</h3></Link>
-            <Link to={`/transactions/${transaction._id}/edit`}>Edit</Link>
-            <button onClick={() => handleDeleteTransaction(transaction._id)}>Delete</button>
+        <div className="transaction-header">
+             <h1>Transactions</h1>
+            <Link to={"/transactions/new"}>+ Add transaction</Link>
         </div>
-    ))}
+        
+        <div className="transaction-filters">
+            <div>
+                <label>Search</label>
+                <input type="text" />
+            </div>
+
+            <div>
+                <label>Type</label>
+                <select>
+                    <option>All</option>
+                    <option>Income</option>
+                    <option>Expense</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Month</label>
+                <input type="month"/>
+            </div>
+        </div>
+
+        <div className="transaction-table">
+
+            <div className="transaction-row transaction-table-header">
+                <p>Description</p>
+                <p>Type</p>
+                <p>Category</p>
+                <p>Amount</p>
+            </div>
+
+   {transactions.map((transaction) => (
+    <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
+        <p>{transaction.description}</p>
+        <p>{transaction.transactionType}</p>
+        <p>{transaction.category?.name}</p>
+        <p>${transaction.amount}</p>
+    </Link>
+))}
+            {/* <button onClick={() => handleDeleteTransaction(transaction._id)}>Delete</button> */}
+            {/* <Link to={`/transactions/${transaction._id}/edit`}>Edit</Link> */}
+    </div>
     </div>
     )
 }
