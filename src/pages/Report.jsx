@@ -147,6 +147,12 @@ const Report = () => {
                                     </div>
                                 </div>
 
+                                <div className="monthlyCard">
+                                    <h2>Income vs Expenses</h2>
+                                    <p>Income: {income}</p>
+                                    <p>Expenses: {expense}</p>
+                                    </div>
+
                                 <div className="category-card">
                                     <button type="button" onClick={() => setCategoryView("Expense")}>Expenses</button>
                                     <button type="button" onClick={() => setCategoryView("Income")}>Income</button>
@@ -171,12 +177,16 @@ const Report = () => {
                                             }
                                         })
 
-                                        return (
-                                            <div key={category._id}>
-                                                <p>{category.name}</p>
-                                                <p>{categoryTotal}</p>
-                                            </div>
-                                        )
+                                        if (categoryTotal > 0) {
+                                            return (
+                                                <div key={category._id}>
+                                                    <p>{category.name}</p>
+                                                    <p>{categoryTotal}</p>
+                                                </div>
+                                            )
+                                        }
+
+                                        return null
                                     })}
                                 </div>
                             </div>
@@ -210,17 +220,17 @@ const Report = () => {
                                     </div>
                                 </div>
 
+                                <div className="monthlyCard">
+                                    <h2>Income vs Expenses</h2>
+                                    <p>Income: {income}</p>
+                                    <p>Expenses: {expense}</p>
+                                    </div>
+
                                 <div className="category-card">
                                     <button type="button" onClick={() => setCategoryView("Expense")}>Expenses</button>
                                     <button type="button" onClick={() => setCategoryView("Income")}>Income</button>
 
                                     <h2>{categoryView === "Expense" ? "Expenses by category" : "Income by category"}</h2>
-
-                                    <div className="monthlyCard">
-                                        <h2>Income vs Expenses</h2>
-                                        <p>Income: {income}</p>
-                                        <p>Expenses: {expense}</p>
-                                        </div>
 
                                     {categories.filter((category) => {
                                         return category.type === categoryView
@@ -239,12 +249,16 @@ const Report = () => {
                                             }
                                         })
                                         
-                                        return (
-                                            <div key={category._id}>
-                                                <p>{category.name}</p>
-                                                <p>{categoryTotal}</p>
-                                            </div>
-                                        )
+                                        if (categoryTotal > 0) {
+                                            return (
+                                                <div key={category._id}>
+                                                    <p>{category.name}</p>
+                                                    <p>{categoryTotal}</p>
+                                                </div>
+                                            )
+                                        }
+
+                                        return null
                                     })}
                                 </div>
                             </div>
