@@ -41,9 +41,6 @@ const Nav = (props) => {
                 <li>
                     <Link to='/sign-in'>Sign In</Link>
                 </li>
-                <li>
-                    <Link to="/report">Report</Link>
-                </li>
             </ul>
             ) }
 
