@@ -37,29 +37,50 @@ const SignUpForm = (props) => {
         } else return false
     }
 
-    return (
-        <section className="card">
-            <header>
-                <h1>Sign Up</h1>
-                <p>{message}</p>
-            </header>
-            <form onSubmit={handleSubmit}>
-                Username:
-                <input type="text" name="username" onChange={handleChange} value={formData.username} required />
-                Email:
-                <input type="email" name="email" onChange={handleChange} value={formData.email} required />
-                Password:
-                <input type="password" name="password" onChange={handleChange} value={formData.password} required />
-                Confirm Password:
-                <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} required />
-                <div className="actions">
-                    <button type="submit" disabled={!isFormValid()}>Sign Up</button>
-                    <button>Cancel</button>
+       return (
+        <div className="auth-page">
+            <form className="auth-form" onSubmit={handleSubmit}>
+                <div className="auth-header">
+                    <h1>Sign Up</h1>
+                    <p>Create your Tharwah account</p>
                 </div>
+
+                <div className="auth-field">
+                    <label>Username:</label>
+                    <div className="auth-input">
+                        <input type="text" name="username" onChange={handleChange} value={formData.username} placeholder="Enter your username" required />
+                    </div>
+                </div>
+
+                <div className="auth-field">
+                    <label>Email:</label>
+                    <div className="auth-input">
+                        <input type="email" name="email" onChange={handleChange} value={formData.email} placeholder="Enter your email" required />
+                    </div>
+                </div>
+
+                <div className="auth-field">
+                    <label>Password:</label>
+                    <div className="auth-input">
+                        <input type="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter your password" required />
+                    </div>
+                </div>
+
+                <div className="auth-field">
+                    <label>Confirm Password:</label>
+                    <div className="auth-input">
+                        <input type="password" name="confirmPassword" onChange={handleChange} value={formData.confirmPassword} placeholder="Confirm your password" required />
+                    </div>
+                </div>
+
+                <p className="auth-error">{message}</p>
+
+                <button className="auth-submit" type="submit" disabled={!isFormValid()}>Sign Up</button>
+
+                <p className="auth-switch">Already have an account? <span onClick={() => navigate('/sign-in')}>Sign In</span></p>
             </form>
-        </section>
+        </div>
     )
-}
 
 export default SignUpForm
 
