@@ -90,7 +90,6 @@ const expenseCate = categories.filter((category) => {
             <div className="category-field">
            <label>Category type</label>
            <div className="category-type-buttons">
-                {/* we're giving the button a value, since the use is not inputing anything */}
                 <button type="button" value={'Income'} name="type" onClick={handleChange}>Income</button>
                 <button type="button" value={'Expense'} name="type" onClick={handleChange}>Expense</button>
            </div>
