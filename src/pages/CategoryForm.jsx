@@ -38,32 +38,24 @@ useEffect(() => {
 }, [])
 
 const handleChange = (event) => {
-    console.log(event.target.name)
-    console.log(event.target.value)
     setCategoryData({...categoryData , [event.target.name]: event.target.value})
-    console.log(categoryData)
 }   
 
 const handleType = (event) => {
-    console.log(event.target.name)
     setCategoryData({...categoryData , type: event.target.name})
     setType(event.target.name)
 
 }
 
-// we are calling the create function from category services and passing it thr form data
 const handleAddCategory = async (categoryData) => {
     const newCategory = await props.categoryServices.create(categoryData)
     setCategoryData(initialState)
-    console.log(newCategory)
 
-    // so the list will be update without the need of refreshing the page everytime
     setCategories([newCategory , ...categories])
 }
 
 const handleUpdateCategory = async (categoryData) => {
     const updatedCategory = await props.categoryServices.update(categoryId, categoryData)
-    console.log(updatedCategory)
     navigate('/')
 }
 
@@ -77,7 +69,6 @@ const handleSubmit = (event) => {
     }
 }
 
-// for us to retunr the categories reltaed to specific type
 const incomeCate = categories.filter((category) => {
     return category.type === 'Income'
 })

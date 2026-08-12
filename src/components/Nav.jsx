@@ -13,7 +13,6 @@ const Nav = (props) => {
             <Link className="nav-brand" to="/">Tharwah</Link>
             { props.user ? (
                 <ul>
-                    {/* <li>Welcome, {props.user.username}!</li> */}
                     <li>
                         <Link to="/">Dashboard</Link>
                     </li>

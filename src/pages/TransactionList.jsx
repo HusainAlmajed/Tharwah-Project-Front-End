@@ -7,7 +7,7 @@ const TransactionList = () => {
 const [transactions , setTransaction] = useState([])
 const [loading , setLoading] = useState(true) 
 const [search , setSearch] = useState('')
-const [typeFilter , setTypeFilter] = useState('All') // so the default type will be both 'income' and 'expense'
+const [typeFilter , setTypeFilter] = useState('All') 
 const [monthFilter , setMonthFilter] = useState(new Date().toISOString().slice(0 , 7))
 
 useEffect(() => {
@@ -15,12 +15,11 @@ useEffect(() => {
     const fetchdData = async () => {
         const data = await transactionService.index()
         setTransaction(data)
-        setLoading(false) // so whenever we have the data, loading animation will stop
+        setLoading(false) 
     }
     fetchdData()
 }, [])
 
-//For filtering the transactions
 const filterdTransactions = transactions.filter((transaction) => {
     const searchInput = transaction.name.toLowerCase().includes(search.toLowerCase())
 
