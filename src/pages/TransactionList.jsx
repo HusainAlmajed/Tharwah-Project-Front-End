@@ -5,7 +5,11 @@ import { Link } from "react-router"
 const TransactionList = () => {
 
 const [transactions , setTransaction] = useState([])
-const [loading , setLoading] = useState(true)
+const [loading , setLoading] = useState(true) 
+const [search , setSearch] = useState('')
+const [typeFilter , setTypeFilter] = useState('All') // so the default type will be both 'income' and 'expense'
+const [monthFilter , setMonthFilter] = useState(new Date().toISOString().slice(0 , 7))
+
 useEffect(() => {
     const fetchdData = async () => {
         const data = await transactionService.index()
@@ -14,6 +18,15 @@ useEffect(() => {
     }
     fetchdData()
 }, [])
+
+//For filtering the transactions
+const filterdTransactions = transactions.filter((transaction) => {
+    const searchInput = transaction.name.toLowerCase().includes(search.toLowerCase())
+
+    const typeInput = typeFilter === 'All' || transaction.transactionType === typeFilter
+
+    return searchInput && typeInput
+})
 
 const handleDeleteTransaction = async (transactionId) => {
     await transactionService.deleteTransaction(transactionId)
@@ -37,12 +50,13 @@ if (loading) return <main><div className="loader"></div></main>
         <div className="transaction-filters">
             <div>
                 <label>Search</label>
-                <input type="text" />
+                <input type="text" value={search} onChange={(event) => {setSearch(event.target.value)}} />
             </div>
 
             <div>
                 <label>Type</label>
-                <select>
+                {/* So the inputed value can be used for the filltering */}
+                <select value={typeFilter} onChange={(event) => {setMonthFilter(event.target.value)}}> 
                     <option>All</option>
                     <option>Income</option>
                     <option>Expense</option>
@@ -58,22 +72,22 @@ if (loading) return <main><div className="loader"></div></main>
         <div className="transaction-table">
 
             <div className="transaction-row transaction-table-header">
-                <p>Description</p>
+                <p>Name</p>
                 <p>Type</p>
                 <p>Category</p>
+                <p>Date</p>
                 <p>Amount</p>
             </div>
 
    {transactions.map((transaction) => (
     <Link className="transaction-row" to={`/transactions/${transaction._id}`} key={transaction._id}>
-        <p>{transaction.description}</p>
+        <p>{transaction.name}</p>
         <p>{transaction.transactionType}</p>
         <p>{transaction.category?.name}</p>
-        <p>${transaction.amount}</p>
+        <p>{new Date(transaction.date).toLocaleDateString()}</p>
+        <p>{transaction.amount} BHD</p>
     </Link>
 ))}
-            {/* <button onClick={() => handleDeleteTransaction(transaction._id)}>Delete</button> */}
-            {/* <Link to={`/transactions/${transaction._id}/edit`}>Edit</Link> */}
     </div>
     </div>
     )
